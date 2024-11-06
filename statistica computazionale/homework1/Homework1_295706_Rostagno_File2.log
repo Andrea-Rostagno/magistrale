@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  25 OCT 2024 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  1 NOV 2024 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -237,11 +237,11 @@ ero pre-senti nell'intervallo
 [1
 
 {C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./fRip.png>]
-<doppiadens.png, id=10, 871.00406pt x 575.90157pt>
+<doppiadens.png, id=10, 834.86906pt x 469.755pt>
 File: doppiadens.png Graphic file (type png)
 <use doppiadens.png>
-Package pdftex.def Info: doppiadens.png  used on input line 51.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
+Package pdftex.def Info: doppiadens.png  used on input line 55.
+(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -252,7 +252,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <lognorm.png, id=19, 871.00406pt x 575.90157pt>
 File: lognorm.png Graphic file (type png)
 <use lognorm.png>
-Package pdftex.def Info: lognorm.png  used on input line 72.
+Package pdftex.def Info: lognorm.png  used on input line 76.
 (pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
 
 
@@ -261,11 +261,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [3 <./doppiadens.png>]
-<post.png, id=25, 871.00406pt x 575.90157pt>
+<post.png, id=25, 834.86906pt x 469.755pt>
 File: post.png Graphic file (type png)
 <use post.png>
-Package pdftex.def Info: post.png  used on input line 85.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
+Package pdftex.def Info: post.png  used on input line 89.
+(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -273,55 +273,48 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [4 <./lognorm.png>]
-<post2.png, id=30, 871.00406pt x 575.90157pt>
+<post2.png, id=30, 834.86906pt x 469.755pt>
 File: post2.png Graphic file (type png)
 <use post2.png>
-Package pdftex.def Info: post2.png  used on input line 93.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
+Package pdftex.def Info: post2.png  used on input line 97.
+(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[5 <./post.png>]
-Overfull \hbox (12.95499pt too wide) in paragraph at lines 100--137
+[5 <./post.png> <./post2.png>]
+Overfull \hbox (12.95499pt too wide) in paragraph at lines 104--141
  [] 
  []
 
-<newpost.png, id=35, 871.00406pt x 575.90157pt>
+<newpost.png, id=36, 834.86906pt x 469.755pt>
 File: newpost.png Graphic file (type png)
 <use newpost.png>
-Package pdftex.def Info: newpost.png  used on input line 142.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
-<prior.png, id=36, 871.00406pt x 575.90157pt>
+Package pdftex.def Info: newpost.png  used on input line 146.
+(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
+
+
+[6 <./newpost.png>]
+<prior.png, id=41, 871.00406pt x 575.90157pt>
 File: prior.png Graphic file (type png)
 <use prior.png>
-Package pdftex.def Info: prior.png  used on input line 150.
+Package pdftex.def Info: prior.png  used on input line 154.
 (pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
 
 
-[6 <./post2.png>]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[7 <./newpost.png>]
-Overfull \hbox (3.15102pt too wide) in paragraph at lines 155--157
+[7 <./prior.png>]
+Overfull \hbox (3.15102pt too wide) in paragraph at lines 159--161
 \OT1/cmr/m/n/12 Beta(1.2,1.2) con il co-mando rbeta(). Suc-ces-si-va-mente ap-p
 lico il metodo
  []
 
 
-Overfull \hbox (0.93909pt too wide) in paragraph at lines 166--167
+Overfull \hbox (0.93909pt too wide) in paragraph at lines 170--171
 []\OT1/cmr/m/n/12 Quindi sos-ti-tu-isco con i miei val-ori e ot-tego che l'atte
 sa di X ^^Re 0.7486497. 
  []
 
 
 
-[8 <./prior.png>] (Homework1_295706_Rostagno_File2.aux)
+[8] (Homework1_295706_Rostagno_File2.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -351,7 +344,7 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/and
 re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
 Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb>
-Output written on Homework1_295706_Rostagno_File2.pdf (8 pages, 220298 bytes).
+Output written on Homework1_295706_Rostagno_File2.pdf (8 pages, 217638 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

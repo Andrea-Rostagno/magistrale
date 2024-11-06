@@ -25,7 +25,11 @@
 	f(Z = 0 \mid Y \in [1.5, 3.5])=\frac{f(Y \in [1.5, 3.5] \mid Z = 0 ) \cdot f(Z = 0)}{f(Y \in [1.5, 3.5])}
 	\]
 	Quindi calcolo singolarmente le varie probabilità e ottengo nel caso Z=0 una probabilità di 0.6353276, mentre nel caso di Z=1 ottengo 0.3646724. Ovviamente sommano a 1.
-	\item \textbf{Punto 4}: Ho semplicemente calcolato i quantili di Y e Z tramite il comando quantile(). \\
+	\item \textbf{Punto 4}: Ho calcolato i quantili tramite l'inversa generalizzata: \\
+	ho creato una funzione che dato in input un campione e il valore di probabilità di cui si vuole calcolare il quantile, ordina in maniera crescente il campione e verifica che\\
+	\[
+	F^{-1}(u) = \inf \{ x : F(x) \geq u \}
+	\]
 	
 	Ottenendo per Y i seguenti quantili:\\
 	
@@ -33,7 +37,7 @@
 		\hline
 		10\% & 20\% & 50\% & 75\% \\
 		\hline
-		1.000000 & 2.000000 & 3.986440 & 5.237517 \\
+		1.000000 & 2.000000 & 3.977563 & 5.236074 \\
 		\hline
 	\end{tabular}\\
 	
@@ -45,7 +49,7 @@
 		0 & 0 & 0 & 1 \\
 		\hline
 	\end{tabular}
-	\item \textbf{Punto 5}: Dato un vettore di punti y, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore la probabilità di ottenere ciascun punto del vettore y. Creo un ciclo per i gamma e ottengo la stessa cosa, in questo caso però ho dovuto utilizzare una tolleranza di 0.1 poichè siamo nel caso continuo. Infine plotto le due densità:
+	\item \textbf{Punto 5}: Dato un vettore di punti y, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore la probabilità di ottenere ciascun punto del vettore y. Creo un ciclo per i gamma e ottengo la stessa cosa, in questo caso però ho dovuto utilizzare una tolleranza di 0.125 poichè siamo nel caso continuo. Infine plotto le due densità:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{doppiadens.png} % Inserisce l'immagine con larghezza metà pagina
@@ -74,24 +78,24 @@
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
 	\newpage
-	\item \textbf{Punto 2}: Imposto la prior di mu e la verosomiglianza in modo da poter ottenere la a posteriori di mu secondo questa proporzione:
+	\item \textbf{Punto 2}: Imposto la prior di mu, la verosomiglianza e l'integrale del loro prodotto in modo da poter ottenere la a posteriori di mu secondo questa proporzione:
 	\[
-	f(\mu \mid x) \propto f(x \mid \mu) f(\mu)
+	f(\mu | y) = \frac{f(y | \mu) f(\mu)}{\int f(y | \mu) f(\mu) \, d\mu} = \frac{f(y | \mu) f(\mu)}{f(y)}
 	\]
-	Per calcolare la verosomiglianza ho utilizzato la funzione sapply() che mi permetteva di calcolare per ogni campione la logistic-normal in modo da farne poi il prodotto. Ho utilizzato la log-verosomiglianza per problemi sui numeri(a volte mi dava tutti zeri).\\
+	Per calcolare la verosomiglianza ho utilizzato la funzione sapply() che mi permetteva di calcolare per ogni campione la logistic-normal in modo da farne poi il prodotto, mentre per il denominatore ho utilizzato integrate(). Ho utilizzato la log-verosomiglianza per problemi sui numeri(a volte mi dava tutti zeri).\\
 	Infine ho plottato la a posteriori di $\mu$:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{post.png} % Inserisce l'immagine con larghezza metà pagina
-		\caption{Posteriori di $\mu$ con 10 campioni} % Aggiunge una didascalia all'immagine
+		\caption{Posteriori di $\mu$ con 10 campioni (integra a 1)} % Aggiunge una didascalia all'immagine
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
 	\newpage
-	Successivamente ho ricalcolato il massimo della funzione con optimize() e generato nuovamente delle variabili uniformi negli intervalli $[0,3]$ e $[0,M_2]$. Dopodiche ho verificato la condizione del metodo accept-reject e su 10000 simulazioni ne sono state accettate 2727. Infine ho nuovamente plottato la a posteriori con le varie simulazioni:
+	Successivamente ho ricalcolato il massimo della funzione con optimize() e generato nuovamente delle variabili uniformi negli intervalli $[0,3]$ e $[0,M_2]$. Dopodiche ho verificato la condizione del metodo accept-reject e su 10000 simulazioni ne sono state accettate 2727. Durante questo procedimento non ho utilizzato la a priori ma il suo kernel come richiesto dall'esercizio. Infine ho plottato il kernel (linea nera che non integra ovviamente a 1) e la densità dei campioni accettati (linea rossa che integra a 1):
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{post2.png} % Inserisce l'immagine con larghezza metà pagina
-		\caption{Posteriori di $\mu$ con 10000 simulazioni} % Aggiunge una didascalia all'immagine
+		\caption{Kernel di $\mu$ con 10000 simulazioni} % Aggiunge una didascalia all'immagine
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
 	\newpage
@@ -143,7 +147,7 @@
 		\caption{Posteriori di $\mu$ con 100 campioni} % Aggiunge una didascalia all'immagine
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
-	\newline
+	\newpage
 	Infine ho plottato la prior di $\mu$ in modo da poterla paragonare con le due a posteriori:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine

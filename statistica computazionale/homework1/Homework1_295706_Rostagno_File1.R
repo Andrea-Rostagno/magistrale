@@ -45,21 +45,31 @@ f_condizionata_z1 <- (sum(Y_Z1 >= intervallo2[1] & Y_Z1 <= intervallo2[2]))/ len
 prob_Z0_cond <- f_condizionata_z0*f_marginale_z0/f_marginale_intervallo#applico la formula di bayes in entrambi i casi
 prob_Z1_cond <- f_condizionata_z1*f_marginale_z1/f_marginale_intervallo
 
-#Punto 4
+#Punto 4    #ho implementato l'inversa generalizzata come richiesto
 quantili <- c(0.1, 0.2, 0.5, 0.75)
-quantili_Y <- quantile(Y,quantili)#con la funzione quantile calcolo i valori del campione corrispondenti alle varie probabilità
-quantili_Z <- quantile(Z,quantili)
+inversa_generalizzata <- function(campione,prob){#creo una funzione che implementi la inversa generalizzata
+  campione_ordinato <- sort(campione)#ordino il campione in maniera crescente
+  for (i in 1:n_campioni) {#calcolo il valore di ogni campione nella cdf e verifico se è maggiore della probabilita inserita
+    if(ecdf(campione)(campione_ordinato[i])>=prob){
+      return(campione_ordinato[i])#in caso affermativo ritorno il primo valore che soddisfa la disuguaglianza
+    }
+  }
+}
+quantili_Y <- sapply(quantili, function(p) inversa_generalizzata(Y, p))#calcolo la inversa generalizzata per ogni valore dato
+quantili_Z <- sapply(quantili, function(p) inversa_generalizzata(Z, p))
 
-#Punto 5
+#Punto 5  #ho modificato la densita di gamma
 y_punti <- seq(0, 10, by = 0.25)#creo i punti
 densita_poisson <- c()
 densita_gamma <- c()
 for (i in 1:length(y_punti)) {
   densita_poisson[i] <- sum(Y_Z0 == y_punti[i]) / length(Y_Z0)#calcolo la probabilità di osservare ogni punto rispetto al campione Y
 }
+
 for (i in 1:length(y_punti)) {
-  densita_gamma[i] <- sum(abs(Y_Z1 - y_punti[i]) < 0.1) / (length(Y_Z1) * 0.2 ) #uguale a sopra solo che essendo continui, devo usare una tolleranza(0.1) e dividere per l'ampiezza dell'intervallo(0.2) 
+  densita_gamma[i] <- sum(Y_Z1 >= y_punti[i] & Y_Z1 < (y_punti[i] + 0.125)) / length(Y_Z1)#calcolo la probabilità di osservare ogni punto rispetto al campione Y utilizzando intervalli di 0.125
 }
+
 plot(y_punti, densita_poisson,type = "h",  col = "blue", lwd = 2, xlab = "y", ylab = "Densità", main = "Stima Monte Carlo della densità di y", ylim = c(0, max(densita_poisson, densita_gamma)))#plotto facendo degli aggiustamenti sull asse y
 lines(y_punti, densita_gamma, type = "l", col = "red", lwd = 2)
 legend("topright", legend = c("Poisson (Z=0)", "Gamma (Z=1)"), col = c("blue", "red"), lty = c(1, 1), lwd = 2)
@@ -122,39 +132,46 @@ points (y,u , pch =20 , cex = 0.1)
 points (X ,U_X , pch =20 , cex = 0.1 , col =2)
 lines ( density (X , from =0 , to = 1) , col =2 , lwd =2)#infine vengono mostrate visivamente le 10000 simulazioni
 
-#Punto 2
-prior_mu <- function(m) {#creiamo la funzione a priori della media
-  dnorm(m,0,sqrt(100))
+#Punto 2   #ho modificato il nome alle variabili in modo da essere piu intuitive e nel pdf ho specificato a cosa corrispondono i vari elementi delle immagini
+prior_mu <- function(valori_mu) {#creiamo la funzione a priori della media
+  dnorm(valori_mu,0,sqrt(100))
 }
-verosomiglianza <- function(m,x) {#creiamo la verosomiglianza
-  verosomiglianza_valori <- sapply(x, function(z) {
-    log(f_logistic_normal(z, m, sigma))})   #utilizzo sapply in modo che ad ogni valore di x(dati) venga calcolata la logistic normal, calcolo la log verosomiglianza per problemi relativi ai dati
+verosomiglianza <- function(valori_mu,campione) {#creiamo la verosomiglianza
+  verosomiglianza_valori <- sapply(campione, function(z) {
+    log(f_logistic_normal(z, valori_mu, sigma))})   #utilizzo sapply in modo che ad ogni valore del campione venga calcolata la logistic normal, calcolo la log verosomiglianza per problemi relativi ai dati
   return(exp(sum(verosomiglianza_valori)))#essendo che usiamo la log-verosomiglianza sarebbe exp(logA+logB)=exp(logA)*exp(logB)=A*B quindi prodotto tra verosomiglianze
 }
-posteriori <- function(m,x){#scriviamo la posteriori che ha come parametro incognito mu mentre x sono i campioni precedentemente calcolati 
-  return(prior_mu(m)*verosomiglianza(m,x))
+posteriori_non_normalizzata <- function(valori_mu,campione){#scriviamo la posteriori non normalizzata (senza il dnominatore del teorema di bayes) che ha come parametro incognito i valori di mu mentre i campioni sono precedentemente calcolati 
+  return(prior_mu(valori_mu)*verosomiglianza(valori_mu,campione))
 }
+
+integrale_denominatore <- integrate(function(m) posteriori_non_normalizzata(m, dati), lower = 0, upper = 3)$value#calcolo del denominatore
+
+posteriori <- function(valori_mu, campione) {#calcolata la posteriori secondo il teorema di bayes
+  posteriori_non_normalizzata(valori_mu, campione) / integrale_denominatore
+}
+integrale_posteriori <- integrate(function(m) posteriori(m, dati), lower = 0, upper = 3)$value#verifico che la densita a posteriori integri a 1
 xseq <- seq(0,3,0.01)
 posteriori_valori <- sapply(xseq, function(m) posteriori(m, dati))#calcolo i corrispondenti valori di densità per ogni valore di mu
 plot(xseq, posteriori_valori, type = "l", col = "blue", lwd = 2,
      main = "Distribuzione a Posteriori di mu", xlab = expression(mu), ylab = "Densità a posteriori") #disegno graficamente la densita a posteriori
 
-max_post <- function(m) {
-  -posteriori(m,dati)# Usiamo il segno negativo per trovare il massimo con optimize
+max_post <- function(m) {#utilizzo il kernel come richiesto dall'esercizio e non la posteriori completa
+  -posteriori_non_normalizzata(m,dati)# Usiamo il segno negativo per trovare il massimo con optimize
 }
 result <- optimize(max_post, interval = c(0.01, 2.99)) 
 M_p2 <- result$minimum
 M2 <- -result$objective#svolgo come nel punto precedente per trovare il massimo della funzione
 y <- runif(nsim, 0,3)#scelgo 0 3 come intervallo osservato dal grafico
 u <- runif(nsim, 0,M2)
-X = y [u < sapply(y, function(m) posteriori(m, dati))]#campione accettato
-U_X = u[u < sapply(y, function(m) posteriori(m, dati))]#seleziono i parametri che rispettano i vincoli dell accept reject
+campione_accettato_della_posteriori = y [u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]#campione accettato
+U_X = u[u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]#seleziono i parametri che rispettano i vincoli dell accept reject
 xseq = seq (0 ,3 ,0.01)
-plot (xseq , sapply(xseq, function(m) posteriori(m, dati)) , ylim =c (0 , M2) ,type ="l ", lwd =2)
+plot (xseq , sapply(xseq, function(m) posteriori_non_normalizzata(m, dati)) , ylim =c (0 , M2) ,type ="l ", lwd =2)
 points (y,u , pch =20 , cex = 0.1)
-points (X ,U_X , pch =20 , cex = 0.1 , col =2)
-lines ( density (X , from =0 , to = 3) , col =2 , lwd =2)#disegno come il punto precedente
-cat("Numero di simulazioni accettate su 10000 simulazioni:",length(X),"\n")#soddisfo i 1000 campioni accettati 
+points (campione_accettato_della_posteriori ,U_X , pch =20 , cex = 0.1 , col =2)
+lines ( density ( campione_accettato_della_posteriori, from =0 , to = 3) , col =2 , lwd =2)#disegno come il punto precedente
+cat("Numero di simulazioni accettate su 10000 simulazioni:",length(campione_accettato_della_posteriori),"\n")#soddisfo i 1000 campioni accettati 
 
 #Punto 3
 n <- 100
@@ -182,9 +199,9 @@ M_p3 <- result$minimum
 M3 <- -result$objective#massimo
 y <- runif(nsim, 0,2)#scelgo 0 2 come intervallo osservato dal grafico
 u <- runif(nsim, 0,M3)
-X = y [u < sapply(y, function(m) posteriori(m, dati2))]#campione accettato
+campione_accettato_della_posteriori_2 = y [u < sapply(y, function(m) posteriori(m, dati2))]#campione accettato
 U_X = u[u < sapply(y, function(m) posteriori(m, dati2))]
-cat("Numero di simulazioni accettate su 10000 simulazioni:",length(X),"\n")
+cat("Numero di simulazioni accettate su 10000 simulazioni:",length(campione_accettato_della_posteriori_2),"\n")
 
 #densità della media a priori
 mu_seq <- seq(-6,6,0.01)
