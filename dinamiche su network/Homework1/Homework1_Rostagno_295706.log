@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  7 NOV 2024 11:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  8 NOV 2024 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./Homework1_295706_Rostagno_File2.tex
-(Homework1_295706_Rostagno_File2.tex
+**./Homework1_Rostagno_295706.tex
+(Homework1_Rostagno_295706.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -125,27 +125,12 @@ tex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count280
 \l__pdf_internal_box=\box54
-) (Homework1_295706_Rostagno_File2.aux
-
-LaTeX Warning: Label `fig:immagine' multiply defined.
-
-
-LaTeX Warning: Label `fig:immagine' multiply defined.
-
-
-LaTeX Warning: Label `fig:immagine' multiply defined.
-
-
-LaTeX Warning: Label `fig:immagine' multiply defined.
-
-
-LaTeX Warning: Label `fig:immagine' multiply defined.
-
+) (Homework1_Rostagno_295706.aux
 
 LaTeX Warning: Label `fig:immagine' multiply defined.
 
 )
-\openout1 = `Homework1_295706_Rostagno_File2.aux'.
+\openout1 = `Homework1_Rostagno_295706.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -221,107 +206,45 @@ G,.JBIG2,.JB2,.eps]
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-<fRip.png, id=1, 871.00406pt x 575.90157pt>
-File: fRip.png Graphic file (type png)
-<use fRip.png>
-Package pdftex.def Info: fRip.png  used on input line 16.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
-
-Overfull \hbox (19.94019pt too wide) in paragraph at lines 20--20
-\OT1/cmr/m/n/12 prob-a-bilit^^Ra che gli el-e-menti del vet-tore fos-sero fos-s
-ero pre-senti nell'intervallo
+Overfull \hbox (6.13562pt too wide) in paragraph at lines 23--24
+\OT1/cmr/m/n/12 Ho cal-co-lato la ca-pacit^^Ra di ogni taglio ($\OML/cmm/m/it/1
+2 C[]$\OT1/cmr/m/n/12 ) div-i-dendo in-sieme di partenza
  []
+
+<graf1.png, id=1, 499.3857pt x 396.0396pt>
+File: graf1.png Graphic file (type png)
+<use graf1.png>
+Package pdftex.def Info: graf1.png  used on input line 30.
+(pdftex.def)             Requested size: 312.00119pt x 247.43349pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [1
 
-{C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./fRip.png>]
-<doppiadens.png, id=10, 834.86906pt x 469.755pt>
-File: doppiadens.png Graphic file (type png)
-<use doppiadens.png>
-Package pdftex.def Info: doppiadens.png  used on input line 55.
-(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
+{C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<graf2.png, id=14, 505.89pt x 396.0396pt>
+File: graf2.png Graphic file (type png)
+<use graf2.png>
+Package pdftex.def Info: graf2.png  used on input line 40.
+(pdftex.def)             Requested size: 312.00119pt x 244.25482pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[2]
-<lognorm.png, id=19, 871.00406pt x 575.90157pt>
-File: lognorm.png Graphic file (type png)
-<use lognorm.png>
-Package pdftex.def Info: lognorm.png  used on input line 76.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[3 <./doppiadens.png>]
-<post.png, id=25, 834.86906pt x 469.755pt>
-File: post.png Graphic file (type png)
-<use post.png>
-Package pdftex.def Info: post.png  used on input line 89.
-(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[4 <./lognorm.png>]
-<post2.png, id=30, 834.86906pt x 469.755pt>
-File: post2.png Graphic file (type png)
-<use post2.png>
-Package pdftex.def Info: post2.png  used on input line 102.
-(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[5 <./post.png>]
-Overfull \hbox (12.95499pt too wide) in paragraph at lines 109--146
- [] 
- []
-
-<newpost.png, id=35, 834.86906pt x 469.755pt>
-File: newpost.png Graphic file (type png)
-<use newpost.png>
-Package pdftex.def Info: newpost.png  used on input line 151.
-(pdftex.def)             Requested size: 312.00119pt x 175.55559pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-[6 <./post2.png>]
-<prior.png, id=40, 871.00406pt x 575.90157pt>
-File: prior.png Graphic file (type png)
-<use prior.png>
-Package pdftex.def Info: prior.png  used on input line 159.
-(pdftex.def)             Requested size: 312.00119pt x 206.28748pt.
-
-
-[7 <./newpost.png> <./prior.png>]
-Overfull \hbox (3.15102pt too wide) in paragraph at lines 164--166
-\OT1/cmr/m/n/12 Beta(1.2,1.2) con il co-mando rbeta(). Suc-ces-si-va-mente ap-p
-lico il metodo
- []
-
-
-Overfull \hbox (0.93909pt too wide) in paragraph at lines 175--176
-[]\OT1/cmr/m/n/12 Quindi sos-ti-tu-isco con i miei val-ori e ot-tego che l'atte
-sa di X ^^Re 0.7486497. 
+[2 <./graf1.png>]
+Overfull \hbox (49.86848pt too wide) detected at line 64
+[][]
  []
 
 
 
-[8] (Homework1_295706_Rostagno_File2.aux)
+[3 <./graf2.png>]
+
+[4] (Homework1_Rostagno_295706.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -332,28 +255,25 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2678 strings out of 473898
- 44363 string characters out of 5726478
- 442049 words of memory out of 5000000
- 25536 multiletter control sequences out of 15000+600000
+ 2648 strings out of 473898
+ 43745 string characters out of 5726478
+ 439043 words of memory out of 5000000
+ 25506 multiletter control sequences out of 15000+600000
  564093 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,7n,67p,686b,315s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 59i,9n,67p,688b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/andre/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/and
-re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
-Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb>
-Output written on Homework1_295706_Rostagno_File2.pdf (8 pages, 219072 bytes).
+ic/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/andre/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/andre/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Homework1_Rostagno_295706.pdf (4 pages, 128569 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
+ 60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

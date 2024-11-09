@@ -49,7 +49,7 @@
 		0 & 0 & 0 & 1 \\
 		\hline
 	\end{tabular}
-	\item \textbf{Punto 5}: Dato un vettore di punti y, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore la probabilità di ottenere ciascun punto del vettore y. Creo un ciclo per i gamma e ottengo la stessa cosa, in questo caso però ho dovuto utilizzare una tolleranza di 0.125 poichè siamo nel caso continuo. Infine plotto le due densità:
+	\item \textbf{Punto 5}: Dato un vettore di punti y, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore che in ogni posizione memorizza la probabilità di ottenere un punto y rispetto al campione Poisson dato. Creo un ciclo per i gamma e tramite il comando dgamma() calcolo la probabilità di ottenere quel valore. Infine plotto le due densità:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{doppiadens.png} % Inserisce l'immagine con larghezza metà pagina
@@ -91,7 +91,12 @@
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
 	\newpage
-	Successivamente ho ricalcolato il massimo della funzione con optimize() e generato nuovamente delle variabili uniformi negli intervalli $[0,3]$ e $[0,M_2]$. Dopodiche ho verificato la condizione del metodo accept-reject e su 10000 simulazioni ne sono state accettate 2727. Durante questo procedimento non ho utilizzato la a priori ma il suo kernel come richiesto dall'esercizio. Infine ho plottato il kernel (linea nera che non integra ovviamente a 1) e la densità dei campioni accettati (linea rossa che integra a 1):
+	Successivamente ho ricalcolato il massimo della funzione con optimize() e ho utilizzato nuovamente il metodo accept-reject per simulare. Ho generato delle variabili uniformi negli intervalli $[0,3]$ e $[0,M_2]$ (siccome osservando dal grafico oltre questo intervallo la posteriori tende a zero, di conseguenza non ci sarebbero campioni accettati). Dopodichè ho verificato la condizione del metodo accept-reject e su 10000 simulazioni ne sono state accettate 2727. Durante questo procedimento non ho utilizzato la a posteriori ma il suo kernel (indicato nel codice come posteriori non normalizzata) calcolato in questo modo:\\
+	\[
+	f(\mu | y) \propto f(y | \mu) f(\mu) = k(\mu | y)
+	\]
+	Ovvero il prodotto tra la verosomiglianza e la prior di $\mu$.\\
+	Infine ho plottato il kernel (linea nera che non integra ovviamente a 1) e la densità dei campioni accettati (linea rossa che integra a 1):
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{post2.png} % Inserisce l'immagine con larghezza metà pagina

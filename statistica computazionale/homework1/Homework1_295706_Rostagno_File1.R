@@ -67,7 +67,7 @@ for (i in 1:length(y_punti)) {
 }
 
 for (i in 1:length(y_punti)) {
-  densita_gamma[i] <- sum(Y_Z1 >= y_punti[i] & Y_Z1 < (y_punti[i] + 0.125)) / length(Y_Z1)#calcolo la probabilità di osservare ogni punto rispetto al campione Y utilizzando intervalli di 0.125
+  densita_gamma[i] <- dgamma(y_punti[i],a,b)#calcolo la probabilità di osservare ogni punto 
 }
 
 plot(y_punti, densita_poisson,type = "h",  col = "blue", lwd = 2, xlab = "y", ylab = "Densità", main = "Stima Monte Carlo della densità di y", ylim = c(0, max(densita_poisson, densita_gamma)))#plotto facendo degli aggiustamenti sull asse y
