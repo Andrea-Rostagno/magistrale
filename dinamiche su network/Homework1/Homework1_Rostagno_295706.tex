@@ -48,11 +48,11 @@
 		\begin{itemize}
 			\item \textbf{Punto a: }Considerando che il throughput è uguale a 2 e si inserisce nel vertice $o$, abbiamo tre possibili percorsi che il flusso può seguire:
 			\begin{itemize}
-				\item Percorso 1: $e_5, e_6$
-				\item Percorso 2: $e_1, e_2, e_4$
-				\item Percorso 3: $e_1, e_3, e_4$
+				\item Percorso 1: $e_1, e_2, e_4$
+				\item Percorso 2: $e_1, e_3, e_4$
+				\item Percorso 3: $e_5, e_6$
 			\end{itemize}
-			Chiamiamo le nostre quattro variabili di flusso $x_1x_2x_3x_4$ dove $x_1$ rappresenta il flusso in $e_1$, $x_2$ rappresenta il flusso in $e_5$, $x_3$ rappresenta il flusso in $e_3$ e $x_4$ rappresenta il flusso in $e_2$. Ora scriviamo il nostro problema di ottimizzazione:\\
+			Chiamiamo le nostre quattro variabili di flusso $x_1x_2x_3x_4$ dove $x_1$ rappresenta il flusso in $e_1$ e $e_4$, $x_2$ rappresenta il flusso in $e_5$ e $e_6$, $x_3$ rappresenta il flusso in $e_3$ e $x_4$ rappresenta il flusso in $e_2$. Ora scriviamo il nostro problema di ottimizzazione:\\
 			\[
 			\begin{aligned}
 				&\min_{x_1, x_2, x_3, x_4} \quad f(x) = x_2 \cdot (2 x_2 + 2 + 3 x_2) + x_1 \cdot (3 x_1 + x_1 + 1) + 3 x_3 + x_4 \cdot (x_4 + 1) \\
@@ -62,10 +62,31 @@
 				&x_1,x_2,x_3,x_4 \geq 0.
 			\end{aligned}
 			\]
-			Facendo le opportune sostituzioni e gli opportuni calcoli si ottiene che la funzione viene minimizzata con $x=[1,1,0,1]$. Notiamo quindi che l'arco $e_3$ non viene utilizzato e che il flusso iniziale si divide a metà (un'unità nel percorso 2 ed un'unità nel percorso 1).\\
+			Facendo le opportune sostituzioni e gli opportuni calcoli si ottiene che la funzione viene minimizzata con $x=[1,1,0,1]$. Notiamo quindi che l'arco $e_3$ non viene utilizzato e che il flusso iniziale si divide a metà (un'unità nel percorso 1 ed un'unità nel percorso 3).\\
 			Costo totale=14.
-			\item \textbf{Punto b: } Sicuramente non esiste un flusso che permetta di avere il costo del pedaggio dei 3 percorsi uguale, in quanto il percorso 2 e il percorso 3 hanno due archi in comune e uguagliare gli archi $e_2,e_3$ vorrebbe dire avere un flusso di 2 unità nell'arco $e_2$, ma questo non è possibile perchè vorrebbe dire avere un pedaggio nullo nel percorso 1. Possiamo quindi eguagliare il costo del pedaggio del percorso 1 al percorso 2 o al percorso 3. Nel primo caso otteniamo lo stesso flusso del punto a, ovvero $x_1=1$ e $x_2=1$. Nel secondo caso invece otteniamo $x_1=\frac{8}{9}$ e $x_2=\frac{10}{9}$.\\
-			I costi totali sono rispettivamente 14 per i percorsi 1 e 2, e $\frac{136}{9}$ per i percorsi 1 e 3.\\
-			I prezzi di anarchia sono corrispettivamente 1 e $\frac{68}{63}$.
+			\item \textbf{Punto b: }Per calcolare l'equilibrio di Wardrop tutti i percorsi utilizzati da almeno un utente devono avere lo stesso ritardo. Impostiamo $f_1, f_2, f_3$ i flussi di persone ch percorrono corrispettivamente il percorso 1, il percorso 2 e il percorso 3 (gli stessi definiti nel punto precedente).\\
+			Ora dobbiamo eguagliare i tre ritardi e dare un vincolo ai flussi ottenendo questo sistema:\\
+			\begin{equation}
+				\begin{cases}
+					5f_1+2=4f_2+4=5f_3+2 \\
+					f_1+f_2+f_3=2
+				\end{cases}
+			\end{equation}
+			Svolgendo i calcoli otteniamo $f_1=\frac{10}{13}$ $f_2=\frac{6}{13}$ $f_3=\frac{10}{13}$\\
+			I quali rispettano tutti i vincoli del grafo.\\
+			Il costo totale è $\frac{2456}{169}$. L'ho ottenuto sostituendo i valori dei vari flussi nella formula del costo totale.\\
+			Il prezzo di anarchia vale $\frac{1228}{1183}=1.038$
+			\item \textbf{Punto c: }Aggiungiamo un nuovo link ($e_7$) che collega il nodo $o$ con il nodo $d$.
+			Otteniamo un nuovo percorso:
+			\begin{itemize}
+				\item Percorso 4: $e_7$
+			\end{itemize}
+			Indichiamo con $f_4$ il flusso che passa nel percorso 4 e risolviamo il seguente sistema.
+			\begin{equation}
+				\begin{cases}
+					5f_1+2=4f_2+4=5f_3+2=f_4 \\
+					f_1+f_2+f_3+f_4=2
+				\end{cases}
+			\end{equation}
 			\end{itemize}
 \end{document}

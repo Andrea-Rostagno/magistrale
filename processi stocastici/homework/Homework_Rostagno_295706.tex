@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\begin{document}
+	\title{\textbf{Homework1 Rostagno}}
+	\author{295706}
+	\date{\today}
+	\maketitle
+	
+	\begin{itemize}
+		\item \textbf{Esercizio 1: }La fotocamera scatta foto con un processo di Poisson con tasso $\lambda=6$ foto orarie. Durante le 100 ore di durata della batteria vengono scattate $6\cdot{100}=600$ foto. Di queste 600 foto solo i $\frac{2}{5}$ sono di buona qualità, quindi $600\cdot{\frac{2}{5}}=240$ foto di buona qualità ogni 100 ore. Un anno ha $365\cdot{24}=8760$ ore.\\
+		Indichiamo con $T$ il tempo medio di un ciclo del rover (tempo di operatività più tempo di ricarica), avremo quindi $T=100+20$ ore.\\
+		Adesso calcoliamo quanti cicli vengono fatti in un anno: $\frac{8760}{120}=73$ cicli all'anno. In un anno verranno quindi scattate $73\cdot{240}=17520$ foto di buona qualità.\\
+		Infine ci basta dividere il numero totale di foto di buona qualità per il numero di ore in un anno e otteniamo: $\frac{17520}{8760}=2$ foto di buona qualità all'ora.\\
+		Essendo un processo di Poisson si poteva anche risolvere facendo:\\ $\frac{6\cdot100\cdot\frac{2}{5}}{100+20}=\frac{240}{120}=2$
+		\item \textbf{Esercizio 2: }Procediamo a scrivere le tre variabili aleatorie relative al tempo di creazione di un pezzo al minuto, sapendo che la media di una variabile aleatoria esponenziale è $E[X]=\frac{1}{\lambda}$ :\\
+		\begin{itemize}
+			\item $T_A\sim exp(\frac{1}{5})$
+			\item $T_B\sim exp(\frac{1}{10})$
+			\item $T_C\sim exp(\frac{1}{20})$
+		\end{itemize}
+		\begin{enumerate}[label=\alph*)]
+			\item Il tasso complessivo di produzione è:\\
+			$\lambda=\frac{1}{5}+\frac{1}{10}+\frac{1}{20}=\frac{7}{20}$ pezzi al minuto.\\
+			Avremo quindi $\frac{7}{20} \cdot 60=21$ pezzi all'ora.\\
+			Dobbiamo quindi calcolare $P(X > 10)$ dove $X \sim \text{Poisson}(21)$.\\
+			Si può scrivere come $1-P(x\leq10)$ che fa 0.9937.\\
+			\item Per produrre il primo pezzo abbiamo $T\sim exp(\frac{7}{20})$ che deve essere superiore a 15 minuti, quindi: $P(T > 15)=e^{-\frac{7}{20}\cdot15}=e^{-5.25}.$\\
+			La probabilità che Bob sia il primo a finire il primo pezzo è $\frac{0.1}{0.2+0.1+0.05}=\frac{0.1}{0.35}=0.2857$
+			\item 
+		\end{enumerate}
+		
+		
+	
+	\end{itemize}
+	
+\end{document}
