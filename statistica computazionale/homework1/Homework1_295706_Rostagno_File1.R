@@ -192,23 +192,38 @@ while(i<=n){#ora calcolo 100 campioni come richiesta
     i <- i+1
   }
 }#otteniamo 100 campioni della logistic normal
-
+integrale_denominatore2 <- integrate(function(m) posteriori_non_normalizzata(m, dati2), lower = 0, upper = 2)$value#calcolo del denominatore
+posteriori2 <- function(valori_mu, campione) {#calcolata la posteriori secondo il teorema di bayes
+  posteriori_non_normalizzata(valori_mu, campione) / integrale_denominatore2
+}
+integrale_posteriori2 <- integrate(function(m) posteriori2(m, dati2), lower = 0, upper = 2)$value#verifico che la densita a posteriori integri a 1
+g2 <- function(x) {#creiamo la funzione g(x) per campionare con il metodo accept-reject
+  dnorm(x,1,sqrt(1))
+}
 xseq <- seq(0,2,0.01)
-posteriori_valori <- sapply(xseq, function(m) posteriori(m, dati2))#calcolo i corrispondenti valori di densità per ogni valore di mu
+posteriori_valori <- sapply(xseq, function(m) posteriori2(m, dati2))#calcolo i corrispondenti valori di densità per ogni valore di mu
 plot(xseq, posteriori_valori, type = "l", col = "blue", lwd = 2,
      main = "Distribuzione a Posteriori di mu (100 campioni)", xlab = expression(mu), ylab = "Densità a posteriori") #disegno graficamente la densita a  posteriori con 100 campioni
 
 max_post2 <- function(m) {
-  -posteriori(m,dati2)# Usiamo il segno negativo per trovare il massimo con optimize
+  -posteriori_non_normalizzata(m,dati2)# Usiamo il segno negativo per trovare il massimo con optimize
 }
 result <- optimize(max_post2, interval = c(0.01, 1.99)) 
 M_p3 <- result$minimum
 M3 <- -result$objective#massimo
-y <- runif(nsim, 0,2)#scelgo 0 2 come intervallo osservato dal grafico
-u <- runif(nsim, 0,M3)
-campione_accettato_della_posteriori_2 = y [u < sapply(y, function(m) posteriori(m, dati2))]#campione accettato
-U_X = u[u < sapply(y, function(m) posteriori(m, dati2))]
-cat("Numero di simulazioni accettate su 10000 simulazioni:",length(campione_accettato_della_posteriori_2),"\n")
+M<-M3/g2(M_p3)*1.15 #trovo M da usare nel metodo accept reject aumentato del 15%
+y <- rnorm(nsim,1,sqrt(1))#campiono dalla g
+u<- c()
+for (i in 1:nsim) {
+  u[i]<-runif(1,0,M*g2(y[i]))#campiono dall uniforme 0,M*g(y)
+}
+campione_accettato_della_posteriori2 <- y [u < sapply(y, function(m) posteriori_non_normalizzata(m, dati2))]
+U_X <- u[u < sapply(y, function(m) posteriori_non_normalizzata(m, dati2))]#seleziono i parametri che rispettano i vincoli dell accept reject
+xseq <- seq (0 ,2 ,0.01)
+plot (xseq , sapply(xseq, function(m) posteriori_non_normalizzata(m, dati2)) , ylim =c (0 , M3) ,type ="l ", lwd =2)
+points (y,u , pch =20 , cex = 0.1)
+points (campione_accettato_della_posteriori2 ,U_X , pch =20 , cex = 0.1 , col =2)
+cat("Numero di simulazioni accettate su 10000 simulazioni:",length(campione_accettato_della_posteriori2),"\n")
 
 #densità della media a priori
 mu_seq <- seq(-6,6,0.01)
@@ -221,7 +236,7 @@ plot(xseq, posteriori_valori, type = "l", col = "blue", lwd = 2,
      main = "Distribuzione a Posteriori di mu(10)", xlab = expression(mu), ylab = "Densità a Posteriori") #disegno graficamente la densita a posteriori
 #densità posteriori con il campione da 100 elementi
 xseq <- seq(0,2,0.01)
-posteriori_valori <- sapply(xseq, function(m) posteriori(m, dati2))#calcolo i corrispondenti valori di densità per ogni valore di mu
+posteriori_valori <- sapply(xseq, function(m) posteriori2(m, dati2))#calcolo i corrispondenti valori di densità per ogni valore di mu
 plot(xseq, posteriori_valori, type = "l", col = "blue", lwd = 2,
      main = "Distribuzione a Posteriori di mu(100)", xlab = expression(mu), ylab = "Densità a Posteriori") #disegno graficamente la densita a posteriori
 

@@ -125,8 +125,8 @@
 	\frac{\text{Valore max del kernel(M2) nel punto M p2 }}{\text{valore di g nello stesso punto}} * 1.15	
 	\] 
 	ho aumentato del $15\%$ il valore del rapporto.\\
-	A questo punto ho campionato il vettore $y \sim N(1,6)$ ed il vettore $u \sim U(0,M*g(y))$ e ho accettato i campioni di y che soddisfassero $u < f(y)$ dove in questo caso f(y) è il kernel che abbiamo usato (nel codice il kernel è indicato come posteriori non normalizzata).
-	Sono stati accettati 1114 campioni.\\
+	A questo punto ho campionato il vettore $y \sim N(1,6)$ ed il vettore $u \sim U(0,M=119*g(y))$ e ho accettato i campioni di y che soddisfassero $u < f(y)$ dove in questo caso f(y) è il kernel che abbiamo usato (nel codice il kernel è indicato come posteriori non normalizzata).
+	Sono stati accettati 1175 campioni.\\
 	Infine ho plottato il kernel (linea nera che non integra ovviamente a 1) e la densità dei campioni accettati (linea rossa che integra a 1):
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
@@ -176,7 +176,7 @@
 		\end{tabular}
 	\end{center}
 	Successivamente ho ripetuto i passaggi del punto 2 ma ricalcolando il massimo e adattando la a posteriori ai nuovi campioni.
-	Ho ottenuto 1264 campioni accettati e la nuova a posteriori diventa:
+	Ho ottenuto 900 campioni accettati e la nuova a posteriori diventa:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{newpost.png} % Inserisce l'immagine con larghezza metà pagina
