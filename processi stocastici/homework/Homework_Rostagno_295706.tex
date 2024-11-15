@@ -3,6 +3,8 @@
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{amsfonts}
+
 \begin{document}
 	\title{\textbf{Homework1 Rostagno}}
 	\author{295706}
@@ -29,10 +31,86 @@
 			Si può scrivere come $1-P(x\leq10)$ che fa 0.9937.\\
 			\item Per produrre il primo pezzo abbiamo $T\sim exp(\frac{7}{20})$ che deve essere superiore a 15 minuti, quindi: $P(T > 15)=e^{-\frac{7}{20}\cdot15}=e^{-5.25}.$\\
 			La probabilità che Bob sia il primo a finire il primo pezzo è $\frac{0.1}{0.2+0.1+0.05}=\frac{0.1}{0.35}=0.2857$
-			\item 
+			\item Dobbiamo calcolare la probabilità che Bob sia il primo a finire sapendo che impiega più di 15 minuti, avremo dunque:\\
+			$P(I=B\mid V>15) = \frac{P(V > 15, I = B)}{P(V>15)}$\\
+			$P(V > 15, I = B) = P(V > 15)P(I = B)$\\
+			Dove $V\sim exp(\frac{7}{20})$ e $P(I=B)$ sarebbe la probabilità che che Bob sia il primo a finire. Di conseguenza come risultato avremo che $P(I=B\mid V>15) =P(I = B)=\frac{0.1}{0.35}=0.2857$
+			\item Sapendo già che Bob è la persona che produrrà il primo pezzo, dobbiamo calcolare la probabilità che Bob impieghi più di 15 minuti a crearlo:\\
+			$P(T_B>15)=e^{-0.1\cdot15}=0.2231$
 		\end{enumerate}
-		
-		
+		\item \textbf{Esercizio 3: }
+		\item \textbf{Esercizio 4: }
+		\begin{enumerate}[label=\alph*)]
+			\item Osservando la matrice di transizione e disegnando il grafo, si può osservare che:
+			gli stati $\{1,2,3\}$ sono $transienti$ poichè hanno una probabilità non nulla di non tornare mai più su loro stessi, mentre gli stati $\{4,5\}$ sono $ricorrenti$ in quanto sono strettamente collegati tra loro.
+			\item T è uno stopping time per la catena di Markov poichè verifica la propietà dello stopping time ovvero:\\
+			Nel nostro caso abbiamo T definito come la "prima visita" dello stato 1, la quale può essere decisa osservando gli stati presenti e passati e non quelli futuri.\\
+			Abbiamo quindi soddisfatto la definizione di stopping time.
+			\item  Dobbiamo calcolare la probabilità che, dopo aver raggiunto per la prima volta lo stato 1, la catena si trovi nello stato 5 al passo successivo. Basta osservare la matrice di transizione nel punto $(1,5)$ e vedere che la probabilità è 0.7 , quindi:\\
+			\[
+			P(X_{T+1} = 5 \mid X_T = 1) = 0.7
+			\]
+			\item Dobbiamo calcolare \( P_1(U < \infty) \), che rappresenta la probabilità che \( U \) sia finito, cioè che ci sia un ultimo tempo in cui la catena visita uno degli stati \(\{1, 2, 3\}\). Dopo il tempo U la catena non visiterà mai più gli stati \(\{1, 2, 3\}\). Abbiamo quindi:\\
+			 \( P_1(U < \infty) \)=$P(U sia finito \mid X_0=1)$.\\
+			 Siccome gli stati \(\{1, 2, 3\}\) sono transienti, esiste una probabilità non nulla che la catena passi da questi stati agli stati $\{4,5\}$ che sono ricorrenti, cioè non è più possibile visitare gli stati \(\{1, 2, 3\}\). In definitiva la soluzione è:\\
+			 $P_1(U < \infty) = 1
+			 $
+			\item U non è uno stopping time poichè il valore $U=n$ indica l'ultima volta che la catena si trova in $\{1, 2, 3\}$ ma per capire se fermarsi o no dobbiamo sapere se lo stato futuro della catena sia 4 o 5. Di conseguenza non rispettiamo la definizione di stopping time di osservare solo valori presenti o passati.
+			\item Considerando che U è l'ultimo istante in cui la catena è in uno degli stati $\{1, 2, 3\}$ e sapendo che in questo ultimo istante siamo nello stato 1, dobbiamo calcolare la probabilità che nell'istante successivo la catena sia nello stato 5. Di conseguenza come nel spiegato nel punto c), otteniamo:\\
+			$P(X_{U+1} = 5 \mid X_U = 1) = 0.7$
+			\item $P_1(	U \leq 6)=P(U=1)+P(U=1)+P(U=2)+P(U=3)+P(U=4)+P(U=5)+P(U=6)$ dove ogni probabilità $P(U=k)=P(\text{la catena sia in }\{1,2,3\} \text{al passo k} ) \cdot \\P(\text{la catena sia in \{4,5\} al passo k+1})$.\\
+			Siccome U rappresenta il valore massimo $n$ per cui ci si trovi ancora in \{1,2,3\}, vuol dire che al passo $n+1$ si deve trovare in \{4,5\}. Per calcolare le probabilità dopo $n$ passi basta elevare a potenza la matrice di transizione $P^{n}$. Calcolando i vari valori ho ottenuto:\\
+			$P_1(U \leq 6)= 0.64$
+		\end{enumerate}
+		\item \textbf{Esercizio 5: }
+		\begin{enumerate}[label=\alph*)]
+			\item Disegnando il grafo notiamo che indipendentemente dallo stato di partenza, la catena torna sempre allo stato 0 con probabilità 1. Lo stato 0 è collegato ad ogni stato con probabilità $p_x$, quindi ogni stato ha sempre almeno una probabilità $p_x$ di essere visitato. Questo rende tutti gli stati ricorrenti.\\
+			Per determinare se gli stati sono positivi ricorrenti, dobbiamo valutare se il tempo medio di ritorno allo stato 0 è finito. Il tempo medio di ritorno a 
+			0 dipende dal valore atteso del nuovo stato selezionato dopo ogni visita a 0. Ogni volta che la catena arriva a 0, "riparte" in uno stato $x$ con probabilità $p_x$. Il tempo atteso per tornare a 0 è dato dal valore atteso di $x$, cioè:\\
+			$\mathbb{E}[X] = \sum_{x \in \mathbb{N}} x p_x
+			$\\
+			In conclusione, se \( \sum_{x \in \mathbb{N}} x p_x < \infty \), allora il tempo medio di ritorno a \(0\) è finito, e lo stato \(0\) (e di conseguenza tutti gli altri stati) è positivamente ricorrente. Altrimenti sono null ricorrenti.
+			\item Dobbiamo calcolare la frequenza di quante volte uno stato $y$ viene visitato in un numero di passi tendente ad infinito. Sappiamo inoltre che siccome \( \sum_{x \in \mathbb{N}} x p_x < \infty \), tutti gli stati sono positivi ricorrenti. Conosciamo anche il teorema:\\
+			\[
+			\lim_{n \to \infty} \frac{N_n(y)}{n} = \frac{1}{\mathbb{E}_y[T_y]}.
+			\]\\
+			Nel nostro caso, siccome la catena torna sempre a zero, possiamo calcolare la probabilità di transizione verso lo stato $y$ con $x\geq y$ come:\\
+			\[
+			\sum_{x = y}^{\infty} p_x.
+			\]
+			Dove $x$ sono gli stati superiori a $y$ ma sapendo che ritornano a 0 con probabilità 1, passeranno per $y$.\\
+			Per uno stato specifico $y$ la frequenza a lungo termine è la probabilità di trovarsi in $y$ rispetto al tempo medio di ritorno, quindi:\\
+			\[
+			\lim_{n \to \infty} \frac{\sum_{m=1}^n 1\{X_m = y\}}{n} = \frac{\sum_{x = y}^{\infty} p_x}{\sum_{x \in \mathbb{N}} x p_x}
+			\]
+			\item Abbiamo precedentemente dimostrato che:\\
+			\[
+			\lim_{n \to \infty} \frac{\sum_{m=1}^n 1\{X_m = y\}}{n} = \frac{\sum_{x = y}^{\infty} p_x}{\sum_{x \in \mathbb{N}} x p_x}
+			\]\\
+			In questo caso però \( \sum_{x \in \mathbb{N}} x p_x = \infty \).\\
+			Cioè la catena trascorre in media un tempo infinito prima di tornare a uno stato specifico. Di conseguenza la frequenza limite di visita a ciascuno stato sarà 0. Questo significa che anche se gli stati sono ricorrenti, il numero di visite ad uno specifico stato cresce più lentamente del numero totale di passi di passi $n$. \\
+			In conclusione abbiamo:\\
+			\[
+			\lim_{n \to \infty} \frac{\sum_{m=1}^n 1\{X_m = y\}}{n} = 0
+			\]
+			\item Dobbiamo calcolare la frequenza a lungo termine delle visite agli stati che sono maggiore o uguali a 100, ovvero stiamo cercando la probabilità limite di essere in uno stato $X_m \geq 100$
+			quando $n$ diventa molto grande, sapendo che il tempo medio di ritorno a 0 è finito (\( \sum_{x \in \mathbb{N}} x p_x < \infty \)).\\
+			Sappiamo che la probabilità di trovarsi in uno stato $x \geq 100$ dipende dal numero medio di passi che la catena trascorre in ogni stato $x \geq 100$ e dalla somma delle probabilità $p_x$ di partire da uno stato $x \geq 100$. Osserviamo che se la catena si trova in uno stato $x \geq 100$ trascorrerà $x-99$ passi in quegli stati. Otteniamo quindi che il tempo medio trascorso negli stati $x \geq 100$ in un ciclo completo (da 0 a 0) è:\\
+			\[
+			\sum_{x=100}^{\infty} (x - 99) p_x
+			\]\\
+			In conclusione possiamo dire:\\
+			\[
+			\lim_{n \to \infty} \frac{\sum_{m=1}^n 1\{X_m \geq 100\}}{n} = \frac{\sum_{x=100}^{\infty} (x - 99) p_x}{\sum_{x \in \mathbb{N}} x p_x}
+			\]
+			\item Siccome abbiamo \( \sum_{x \in \mathbb{N}} x p_x = \infty \), la catena è null ricorrente. Di conseguenza non possiamo più applicare il teorema ergodico. Questo implica che la frequenza a lungo termine di visita agli stati $x \geq 100$ tenderà a 1, perché il tempo medio trascorso negli stati $x \leq 100$ diventa trascurabile rispetto a quello trascorso negli stati $x \geq 100$. Abbiamo quindi:\\
+			 \[
+			 \lim_{n \to \infty} \frac{\sum_{m=1}^n 1\{X_m \geq 100\}}{n} = 1
+			 \]
+			
+			
+			
+		\end{enumerate}
 	
 	\end{itemize}
 	

@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  9 NOV 2024 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  14 NOV 2024 10:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./Homework1_Rostagno_295706.tex
 (Homework1_Rostagno_295706.tex
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-09-10>
+L3 programming layer <2024-05-27>
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
@@ -236,18 +236,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 [2 <./graf1.png>]
-Overfull \hbox (49.86848pt too wide) detected at line 64
-[][]
+
+[3 <./graf2.png>]
+
+[4]
+Overfull \hbox (24.11792pt too wide) in paragraph at lines 118--118
+[]\OT1/cmr/m/n/12 Successivamente come sug-ger-i-mento in-di-cato nel testo cal
+-co-l-iamo l'equilibrio
  []
 
 
 
-[3 <./graf2.png>]
+[5]
 
-[4] (Homework1_Rostagno_295706.aux)
+[6] (Homework1_Rostagno_295706.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-09-10>
+L3 programming layer <2024-05-27>
  ***********
 
 
@@ -255,11 +260,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2652 strings out of 473898
- 43859 string characters out of 5726478
- 439043 words of memory out of 5000000
- 25510 multiletter control sequences out of 15000+600000
- 564093 words of font info for 57 fonts, out of 8000000 for 9000
+ 2656 strings out of 473904
+ 43897 string characters out of 5726601
+ 1939908 words of memory out of 5000000
+ 25506 multiletter control sequences out of 15000+600000
+ 564714 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,9n,67p,531b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
@@ -271,10 +276,12 @@ X/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/andre/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/andr
-e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Homework1_Rostagno_295706.pdf (4 pages, 138163 bytes).
+e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/U
+sers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb>
+Output written on Homework1_Rostagno_295706.pdf (6 pages, 154955 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

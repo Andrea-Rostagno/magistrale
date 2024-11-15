@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
 \begin{document}
 	\title{\textbf{Homework1 Rostagno File2}}
 	\author{295706}
@@ -10,21 +12,26 @@
 	
 \centering \textbf{Esercizio 1}\\
 \begin{itemize}
-	\item \textbf{Punto 1}: Dopo aver impostato correttamente i parametri forniti, ho simulato un campione di 1000 elementi come richiesto di una Bernulli. Successivamente ho simulato un campione di una poisson o un campione di una gamma in base se fosse presente un 1 o uno 0 in ogni posizione del campione Bernoulli. Infine ho plottato la cdf tramite il comando R ecdf().
+	\item \textbf{Punto 1}: Dopo aver impostato correttamente i parametri forniti, ho simulato un campione di 1000 elementi come richiesto di una Bernulli (rbinom(ncampioni, 1, p)). Successivamente ho simulato un campione di una poisson (rpois(1,lambda)) o un campione di una gamma (rgamma(1,a,b)) in base se fosse presente un 1 o uno 0 in ogni posizione del campione Bernoulli. Infine ho plottato la cdf tramite il comando R ecdf().
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{fRip.png} % Inserisce l'immagine con larghezza metà pagina
 		\caption{Stima monte carlo della CDF} % Aggiunge una didascalia all'immagine
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
-	\item  \textbf{Punto 2} : Una volta ottenuto il vettore campione Y, ho calcolato la probabilità che gli elementi del vettore fossero fossero presenti nell'intervallo richiesto. Di conseguenza ho contato quanti valori di Y fossero presenti nell'intervallo e ho diviso per il numero totale di elementi del vettore. Stesso procedimento eseguito per il secondo intervallo condizionato,con la differenza che qua ho usato solo gli elementi di Y generati dagli elementi di Z uguali a 0.\\
+	\item  \textbf{Punto 2} : Una volta ottenuto il vettore campione Y, ho calcolato la probabilità che gli elementi del vettore fossero fossero presenti nell'intervallo richiesto. Di conseguenza ho contato quanti valori di Y fossero presenti nell'intervallo e ho diviso per il numero totale di elementi del vettore.\\
+	Utilizzando questo stimatore:\\ 
+	\[
+	\frac{\sum_{i=1}^n \mathbf{1}_{\{Y_i \in [3.5, 4.5]\}}}{n}
+	\] 
+	Successivamente ho utilizzato lo stesso stimatore per il secondo intervallo condizionato,con la differenza che qua ho usato solo gli elementi di Y generati dagli elementi di Z uguali a 0 (Y[Z == 0]).\\
 	Ho ottenuto che la prima probabilità vale 0.173 mentre la seconda vale 0.172. Plausibile in quanto il vettore Z è una Bernoulli di probabilità 0.5. 
 	Successivamente devo stimare la varianza, possiamo dire che se un campione cade nell'intervallo è un successo altrimenti no, quindi come una Bernoulli. Di conseguenza la varianza di una Bernoulli è $Var = p \cdot(1-p)$ ed essendo applicata su n campioni diventa: $\hat{Var} =\frac{p \cdot(1-p)}{n}  $, dove p rappresenta le due probabilità precedentemente calcolate. Ottengo che la prima varianza vale 0.000143071, mentre la seconda vale 0.0002756526.
 	\item \textbf{Punto 3}: Devo nuovamente calcolare delle probabilità condizionate, ma sta volta uso il teorema di Bayes che nel nostro caso diventa:\\
 	\[
 	f(Z = 0 \mid Y \in [1.5, 3.5])=\frac{f(Y \in [1.5, 3.5] \mid Z = 0 ) \cdot f(Z = 0)}{f(Y \in [1.5, 3.5])}
 	\]
-	Quindi calcolo singolarmente le varie probabilità e ottengo nel caso Z=0 una probabilità di 0.6353276, mentre nel caso di Z=1 ottengo 0.3646724. Ovviamente sommano a 1.
+	Quindi calcolo singolarmente le varie probabilità, utilizzando lo stimatore precedente(modificandone gli intervalli), e ottengo nel caso Z=0 una probabilità di 0.6353276, mentre nel caso di Z=1 ottengo 0.3646724. Ovviamente sommano a 1.
 	\item \textbf{Punto 4}: Ho calcolato i quantili tramite l'inversa generalizzata: \\
 	ho creato una funzione che dato in input un campione e il valore di probabilità di cui si vuole calcolare il quantile, ordina in maniera crescente il campione e verifica che\\
 	\[
@@ -49,7 +56,12 @@
 		0 & 0 & 0 & 1 \\
 		\hline
 	\end{tabular}
-	\item \textbf{Punto 5}: Dato un vettore di punti y, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore che in ogni posizione memorizza la probabilità di ottenere un punto y rispetto al campione Poisson dato. Creo un ciclo per i gamma e tramite il comando dgamma() calcolo la probabilità di ottenere quel valore. Infine plotto le due densità:
+	\item \textbf{Punto 5}: Dato un vettore di punti $y$, devo calcolare rispetto ai campioni poisson e gamma separatamente la probabilità di ottenerli. Creo un ciclo per i Poisson e ottengo un vettore che in ogni posizione memorizza la probabilità di ottenere un punto $y$ rispetto al campione Poisson dato. Utilizzando questo stimatore:\\
+	\[
+	\frac{\sum_{i=1}^{n_0} \mathbf{1}_{\{Y_0i = y \}}}{n_0}
+	\] 
+	Dove $Y_0$ sono i valori del campione generati dalla Poisson, $n_0$ è la lunghezza del vettore e $y$ è il punto di cui voglio conoscere la probabilità. Utilizzo un ciclo che faccia questa stima per ogni punto $y$.
+	Per la parte continua invece, utilizzo il comando dgamma() per calcolare la probabilità di ottenere ogni punto $y$. Infine plotto le due densità:
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine
 		\includegraphics[width=0.8\textwidth]{doppiadens.png} % Inserisce l'immagine con larghezza metà pagina
@@ -60,7 +72,12 @@
 \newpage
 \centering \textbf{Esercizio 2}\\
 \begin{itemize}
-	\item \textbf{Punto 1}: Imposto i vari parametri iniziali e scrivo le funzioni della logistic-normal. Per trovare il valore massimo da usare nel metodo accept-reject ho utilizzato il comando optimize(). Dopodichè ho impostato un ciclo while che mi trovasse n=10 campioni come da richiesta. Simulo le variabili y e u come uniformi nei corrispettivi intervalli $[a,b] $ e $[0,M_1]$. Infine imposto la condizione che se il valore di u è minore della funzione calcolata in y allora accetto y come campione. Il campione da me ottenuto è:\\
+	\item \textbf{Punto 1}: Imposto i vari parametri iniziali e scrivo le funzioni della logistic-normal. $X \in [0,1]$ è definita in un dominio arbitrario, quindi posso usare il metodo accept-reject ipotizzando di simulare un punto in una "scatola" di dimensioni $[0, 1] \times [0, M_1]$, dove $M_1$ è il valore massimo della funzione logistic-normal calcolato tramite il comando optimize(). Successivamente imposto un ciclo while che termina quando ha trovato 10 campioni validi. Simulo le variabili y e u come uniformi nei corrispettivi intervalli $[0,1]$ e $[0,M_1]$ e accetto la coppia (y,u) se:\\
+	\[
+	0 < u < f_X(y)
+	\]
+	dove $f_X$ è la logistic-normal.\\
+    Il campione da me ottenuto è:\\
 	\[
 	\left[
 	\begin{array}{l}
@@ -91,11 +108,25 @@
 		\label{fig:immagine} % Aggiunge un'etichetta per riferimenti interni
 	\end{figure}
 	\newpage
-	Successivamente ho ricalcolato il massimo della funzione con optimize() e ho utilizzato nuovamente il metodo accept-reject per simulare. Ho generato delle variabili uniformi negli intervalli $[0,3]$ e $[0,M_2]$ (siccome osservando dal grafico oltre questo intervallo la posteriori tende a zero, di conseguenza non ci sarebbero campioni accettati). Dopodichè ho verificato la condizione del metodo accept-reject e su 10000 simulazioni ne sono state accettate 2727. Durante questo procedimento non ho utilizzato la a posteriori ma il suo kernel (indicato nel codice come posteriori non normalizzata) calcolato in questo modo:\\
+	Successivamente ho ottenuto dei campioni usando il metodo accept-reject basato su kernel. Ho scelto come funzione di densità $g(x)$ una normale $N(1,6)$ e come kernel ho utilizzato $k(\mu | x)=L(\mu,\sigma^2) f(\mu)$
+	dove $L(\mu,\sigma^2)$ è la verosomiglianza della funzione logisti-normal e $f(\mu)$ è la prior di $\mu$.
 	\[
-	f(\mu | y) \propto f(y | \mu) f(\mu) = k(\mu | y)
+	L(\mu, \sigma^2) = \prod_{i=1}^n f(x_i | \mu, \sigma^2)
 	\]
-	Ovvero il prodotto tra la verosomiglianza e la prior di $\mu$.\\
+	\[
+	f(\mu) = \frac{1}{\sqrt{200 \pi}} \exp \left( -\frac{\mu^2}{200} \right)
+	\]
+	Dopodichè ho calcolato il valore M affinchè fosse valido per questa disuguaglianza:\\
+	\[
+	f(x) \leq M g(x) \rightarrow \frac{k(\mathbf{x}|\theta)}{C(\theta)} \leq M g(x) \rightarrow k(\mathbf{x}|\theta) \leq C(\theta) M g(x) = M^* g(x)
+	\]
+	la quale rappresenta come si passa dalla condizione normale del metodo accept-reject a quella con il kernel. Per trovare M ho eseguito:\\
+	\[
+	\frac{\text{Valore max del kernel(M2) nel punto M p2 }}{\text{valore di g nello stesso punto}} * 1.15	
+	\] 
+	ho aumentato del $15\%$ il valore del rapporto.\\
+	A questo punto ho campionato il vettore $y \sim N(1,6)$ ed il vettore $u \sim U(0,M*g(y))$ e ho accettato i campioni di y che soddisfassero $u < f(y)$ dove in questo caso f(y) è il kernel che abbiamo usato (nel codice il kernel è indicato come posteriori non normalizzata).
+	Sono stati accettati 1114 campioni.\\
 	Infine ho plottato il kernel (linea nera che non integra ovviamente a 1) e la densità dei campioni accettati (linea rossa che integra a 1):
 	\begin{figure}[h] % L'ambiente figure permette di gestire il posizionamento
 		\centering % Centra l'immagine

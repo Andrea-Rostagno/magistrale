@@ -52,17 +52,16 @@
 				\item Percorso 2: $e_1, e_3, e_4$
 				\item Percorso 3: $e_5, e_6$
 			\end{itemize}
-			Chiamiamo le nostre quattro variabili di flusso $x_1x_2x_3x_4$ dove $x_1$ rappresenta il flusso in $e_1$ e $e_4$, $x_2$ rappresenta il flusso in $e_5$ e $e_6$, $x_3$ rappresenta il flusso in $e_3$ e $x_4$ rappresenta il flusso in $e_2$. Ora scriviamo il nostro problema di ottimizzazione:\\
+			Chiamiamo le nostre tre variabili di flusso $f_1f_2f_3$ dove $f_1$ rappresenta il flusso che passa per il percorso 1, $f_2$ rappresenta il flusso che passa per il percorso 2 e $f_3$ rappresenta il flusso che passa per il percorso 3. Ora scriviamo il nostro problema di ottimizzazione:\\
 			\[
 			\begin{aligned}
-				&\min_{x_1, x_2, x_3, x_4} \quad f(x) = x_2 \cdot (2 x_2 + 2 + 3 x_2) + x_1 \cdot (3 x_1 + x_1 + 1) + 3 x_3 + x_4 \cdot (x_4 + 1) \\
+				&\min_{f_1, f_2, f_3} \quad f(x) = f_1 \cdot (5f_1+2) + f_2 \cdot (4f_2+4) + f_3 \cdot(5f_3+2) \\
 				&\text{vincoli:} \\
-				&x_1 + x_2 = 2, \\
-				&x_3 + x_4 = x_1, \\
-				&x_1,x_2,x_3,x_4 \geq 0.
+				&f_1 + f_2 + f_3= 2, \\
+				&f_1,f_2,f_3 \geq 0.
 			\end{aligned}
 			\]
-			Facendo le opportune sostituzioni e gli opportuni calcoli si ottiene che la funzione viene minimizzata con $x=[1,1,0,1]$. Notiamo quindi che l'arco $e_3$ non viene utilizzato e che il flusso iniziale si divide a metà (un'unità nel percorso 1 ed un'unità nel percorso 3).\\
+			Facendo le opportune sostituzioni e gli opportuni calcoli si ottiene che la funzione viene minimizzata con $f=[1,0,1]$. Notiamo quindi che l'arco $e_3$ non viene utilizzato e che il flusso iniziale si divide a metà (un'unità nel percorso 1 ed un'unità nel percorso 3).\\
 			Costo totale=14.
 			\item \textbf{Punto b: }Per calcolare l'equilibrio di Wardrop tutti i percorsi utilizzati da almeno un utente devono avere lo stesso ritardo. Impostiamo $f_1, f_2, f_3$ i flussi di persone ch percorrono corrispettivamente il percorso 1, il percorso 2 e il percorso 3 (gli stessi definiti nel punto precedente).\\
 			Ora dobbiamo eguagliare i tre ritardi e dare un vincolo ai flussi ottenendo questo sistema:\\
@@ -76,17 +75,55 @@
 			I quali rispettano tutti i vincoli del grafo.\\
 			Il costo totale è $\frac{2456}{169}$. L'ho ottenuto sostituendo i valori dei vari flussi nella formula del costo totale.\\
 			Il prezzo di anarchia vale $\frac{1228}{1183}=1.038$
-			\item \textbf{Punto c: }Aggiungiamo un nuovo link ($e_7$) che collega il nodo $o$ con il nodo $d$.
+			\item \textbf{Punto c: }Aggiungiamo un nuovo link ($e_7$) che collega il nodo $n_1$ con il nodo $n_3$.
 			Otteniamo un nuovo percorso:
 			\begin{itemize}
-				\item Percorso 4: $e_7$
+				\item Percorso 4: $e_1 e_7 e_6$
 			\end{itemize}
 			Indichiamo con $f_4$ il flusso che passa nel percorso 4 e risolviamo il seguente sistema.
 			\begin{equation}
 				\begin{cases}
-					5f_1+2=4f_2+4=5f_3+2=f_4 \\
+					5f_1+2=4f_2+4=5f_3+2=7f_4 \\
 					f_1+f_2+f_3+f_4=2
 				\end{cases}
 			\end{equation}
+			Risolvendo il sistema a mano si ottengono questi valori di flusso:\\
+			$f_1=\frac{62}{111}$,$f_2=\frac{22}{111}$,$f_3=\frac{62}{111}$,$f_4=\frac{76}{111}$\\
+			Il costo totale è: $\frac{195592}{12321}=15.87$, che è maggiore del costo totale precedente(14.53), quindi abbiamo fatto verificare il paradosso di Braess. \\
+			Calcoliamo ora il flusso ottimale che minimizza questa nuova rete di nodi:\\
+			\newpage
+				$\min_{f_1, f_2, f_3, f_4} \quad f(x) = (f_1+f_2+f_4)(3(f_1+f_2+f_4))+f_3(2f_3+2)+f_4^2+3f_2+
+				f_1(f_1+1)+(f_1+f_2)(1+(f_1+f_2))+(f_3+f_4)3(f_3+f_4)$ \\
+				$\textbf{vincoli:} $\\
+				$f_1 + f_2+f_3+f_4 = 2$ \\
+				$f_1,f_2,f_3,f_4 \geq 0$\\
+				
+			Dopo aver risolto in python il seguente problema di ottimizzazione otteniamo che l'ottimo è uguale al sistema precedente ovvero $f=[1,0,1,0]$ e quindi il costo totale all'ottimo è 14.\\
+			Il prezzo di anarchia è dunque $\frac{195592}{12321 \cdot14}=1.134$
+			\item \textbf{Punto d: }Per trovare un vettore di pedaggi ottimale $\omega$ affinchè il prezzo di anarchia sia uguale a 1, ci basta applicare la seguente formula:\\
+			$\omega_e^{*}=f_e^*\tau_e'(f_e^*)$\\
+			Dove $f_e^*$ sarebbero i flussi all'ottimo di sistema senza considerare i pedaggi e $\tau_e'(f_e^*)$ sarebbero le derivate delle funzioni ritardo rispetto all'ottimo di sistema.\\
+			Otteniamo quindi che il vettore di pedaggi vale $\omega_e^{*}=(3,1,0,1,2,3,0)$.
+			\item \textbf{Punto e: }Iniziamo a calcolare l'ottimo di sistema, ovvero il valore dei tre flussi per cui il costo totale del grafo ha valore minimo. Risolviamo il seguente problema di ottimizzazione:\\
+			\[
+			\begin{aligned}
+				&\min_{f_1, f_2, f_3} \quad f(x) = f_1 \cdot (5f_1+2) + f_2 \cdot (2+(4+\alpha)f_2) + f_3 \cdot(5f_3+2) \\
+				&\text{vincoli:} \\
+				&f_1 + f_2 + f_3= \chi, \\
+				&f_1,f_2,f_3 \geq 0.
+			\end{aligned}
+			\]
+			Risolvendolo tramite il metodo del lagrangiano vincolato otteniamo i seguenti risultati:\\
+			$f_1=\frac{(4+\alpha)\chi}{13+2\alpha}$ $f_2=\frac{5\chi}{13+2\alpha}$ $f_3=\frac{(4+\alpha)\chi}{13+2\alpha}$\\
+			Successivamente come suggerimento indicato nel testo calcoliamo l'equilibrio di Wardrop:\\
+			\begin{equation}
+				\begin{cases}
+					5f_1+2=(4+\alpha)f_2+2=5f_3+2 \\
+					f_1+f_2+f_3=\chi
+				\end{cases}
+			\end{equation}
+			Risolvendo il sistema otteniamo i seguenti risultati:\\
+			$f_1=\frac{(4+\alpha)\chi}{13+2\alpha}$ $f_2=\frac{5\chi}{13+2\alpha}$ $f_3=\frac{(4+\alpha)\chi}{13+2\alpha}$\\
+			Possiamo notare che indipendentemente da $\alpha$ e $\chi$ il prezzo di anarchia vale già 1, poichè i flussi all'equilibrio di Wardrop coincidono con i flussi all'ottimo. Di conseguenza il vettore ottimale dei pedaggi sarà $\omega_e^{*}=(0,0,0,0,0,0)$.
 			\end{itemize}
 \end{document}

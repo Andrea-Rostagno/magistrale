@@ -136,6 +136,9 @@ lines ( density (X , from =0 , to = 1) , col =2 , lwd =2)#infine vengono mostrat
 prior_mu <- function(valori_mu) {#creiamo la funzione a priori della media
   dnorm(valori_mu,0,sqrt(100))
 }
+g <- function(x) {#creiamo la funzione g(x) per campionare con il metodo accept-reject
+  dnorm(x,1,sqrt(6))
+}
 verosomiglianza <- function(valori_mu,campione) {#creiamo la verosomiglianza
   verosomiglianza_valori <- sapply(campione, function(z) {
     log(f_logistic_normal(z, valori_mu, sigma))})   #utilizzo sapply in modo che ad ogni valore del campione venga calcolata la logistic normal, calcolo la log verosomiglianza per problemi relativi ai dati
@@ -162,11 +165,15 @@ max_post <- function(m) {#utilizzo il kernel come richiesto dall'esercizio e non
 result <- optimize(max_post, interval = c(0.01, 2.99)) 
 M_p2 <- result$minimum
 M2 <- -result$objective#svolgo come nel punto precedente per trovare il massimo della funzione
-y <- runif(nsim, 0,3)#scelgo 0 3 come intervallo osservato dal grafico
-u <- runif(nsim, 0,M2)
-campione_accettato_della_posteriori = y [u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]#campione accettato
-U_X = u[u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]#seleziono i parametri che rispettano i vincoli dell accept reject
-xseq = seq (0 ,3 ,0.01)
+M<-M2/g(M_p2)*1.15 #trovo M da usare nel metodo accept reject aumentato del 15%
+y <- rnorm(nsim,1,sqrt(6))#campiono dalla g
+u<- c()
+for (i in 1:nsim) {
+  u[i]<-runif(1,0,M*g(y[i]))#campiono dall uniforme 0,M*g(y)
+}
+campione_accettato_della_posteriori <- y [u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]
+U_X <- u[u < sapply(y, function(m) posteriori_non_normalizzata(m, dati))]#seleziono i parametri che rispettano i vincoli dell accept reject
+xseq <- seq (0 ,3 ,0.01)
 plot (xseq , sapply(xseq, function(m) posteriori_non_normalizzata(m, dati)) , ylim =c (0 , M2) ,type ="l ", lwd =2)
 points (y,u , pch =20 , cex = 0.1)
 points (campione_accettato_della_posteriori ,U_X , pch =20 , cex = 0.1 , col =2)
