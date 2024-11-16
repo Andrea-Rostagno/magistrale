@@ -198,7 +198,7 @@ posteriori2 <- function(valori_mu, campione) {#calcolata la posteriori secondo i
 }
 integrale_posteriori2 <- integrate(function(m) posteriori2(m, dati2), lower = 0, upper = 2)$value#verifico che la densita a posteriori integri a 1
 g2 <- function(x) {#creiamo la funzione g(x) per campionare con il metodo accept-reject
-  dnorm(x,1,sqrt(1))
+  dnorm(x,1,sqrt(0.5))
 }
 xseq <- seq(0,2,0.01)
 posteriori_valori <- sapply(xseq, function(m) posteriori2(m, dati2))#calcolo i corrispondenti valori di densità per ogni valore di mu
@@ -212,7 +212,7 @@ result <- optimize(max_post2, interval = c(0.01, 1.99))
 M_p3 <- result$minimum
 M3 <- -result$objective#massimo
 M<-M3/g2(M_p3)*1.15 #trovo M da usare nel metodo accept reject aumentato del 15%
-y <- rnorm(nsim,1,sqrt(1))#campiono dalla g
+y <- rnorm(nsim,1,sqrt(0.5))#campiono dalla g
 u<- c()
 for (i in 1:nsim) {
   u[i]<-runif(1,0,M*g2(y[i]))#campiono dall uniforme 0,M*g(y)
