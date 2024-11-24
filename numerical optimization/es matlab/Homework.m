@@ -111,7 +111,7 @@ function [x_min, f_min, iter, min_history] = modified_newton(f, grad_f, hess_f, 
         c = 1e-4;
         max_backtracking_iter = 20; % Limita la ricerca lineare
         backtracking_iter = 0;
-        while f(x + alpha * p) > f(x) + c * alpha * g' * p && backtracking_iter < max_backtracking_iter
+        while f(x + alpha * p) > f(x) + c * alpha * g' * p && backtracking_iter < max_backtracking_iter % Disequaxione di Armijo
             alpha = rho * alpha;
             backtracking_iter = backtracking_iter + 1;
         end
