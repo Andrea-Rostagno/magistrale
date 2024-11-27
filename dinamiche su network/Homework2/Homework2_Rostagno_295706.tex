@@ -3,6 +3,7 @@
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{enumitem}
+\usepackage{tikz}
 \begin{document}
 	\title{\textbf{Homework 2}}
 	\author{Rostagno 295706}
@@ -74,8 +75,289 @@
 		\tau_{\text{rel}} = \frac{1}{1 - \lambda_2} \approx \frac{3 n^2}{n^2 + 2 \pi^2}.
 		\]
 		\item \textbf{Punto c: }
-		\item \textbf{Punto d: }
+		Conosciamo la disuguaglianza di Cheeger:\\
+		\[
+		\frac{1}{2} \Phi_G^2 \leq 1 - \lambda_2 \leq 2 \Phi_G.
+		\]
+		Nel nostro caso specifico abbiamo un grafo Barbell con $n$ nodi $B_n$ e quindi avremo:\\
+		\[
+		\Phi_{B_n} = \left( \frac{n^2}{4} - \frac{n}{2} + 1 \right)^{-1}.
+		\]
+		Dalla disuguaglianza di Cheeger scriviamo:
+		\[
+		\frac{\Phi_{B_n}^2}{2} \leq 1 - \lambda_2 \leq 2 \Phi_{B_n}.
+		\]
+		
+		Sostituendo \(\Phi_{B_n}\):
+		\[
+		\frac{\left(\frac{n^2}{4} - \frac{n}{2} + 1 \right)^{-2}}{2} \leq 1 - \lambda_2 \leq 2 \left(\frac{n^2}{4} - \frac{n}{2} + 1 \right)^{-1}.
+		\]
+		Il tempo di rilassamento è dato da:
+		\[
+		T_{\text{relax}} = \frac{1}{1 - \lambda_2}.
+		\]
+		
+		Sostituendo i limiti superiori e inferiori di \(1 - \lambda_2\), otteniamo:
+		\[
+		\frac{1}{2 \Phi_{B_n}} \leq T_{\text{relax}} \leq \frac{2}{\Phi_{B_n}}.
+		\]
+		
+		Sostituendo \(\Phi_{B_n}\):
+		\[
+		\frac{1}{2 \left(\frac{n^2}{4} - \frac{n}{2} + 1\right)^{-1}} \leq T_{\text{relax}} \leq \frac{2}{\left(\frac{n^2}{4} - \frac{n}{2} + 1\right)^{-2}}.
+		\]
+		
+		Semplificando:
+		\[
+		\frac{n^2 / 4 - n / 2 + 1}{2} \leq T_{\text{relax}} \leq 2 \left(n^2 / 4 - n / 2 + 1\right)^2.
+		\]
+		Quando $n \rightarrow \infty$ , \(n^2 / 4\) domina i termini \(n / 2\) e \(1\), quindi:
+		\[
+		\Phi_{B_n} \sim \frac{4}{n^2}.
+		\]
+		
+		In conclusione possiamo dire che il tempo di rilassamento aumenta quadraticamente con $n$. 
+		
+		\item \textbf{Punto d: }\\
+		\textbf{Convergenza rapida $x(0)$:} Quando metà dei nodi ha valore iniziale \(0\) e l'altra metà \(1\), il consenso viene raggiunto principalmente attraverso la mediazione del collegamento tra i due "gruppi" (i quattro nodi collegati fra loro). In questo caso, il tempo di convergenza non scala in modo significativo con il numero di nodi \(n\), poiché la convergenza avviene "globalmente" e sfrutta la struttura simmetrica del grafo. $x(0)$ è fatta in modo che i nodi in uno dei due gruppi abbiano valore iniziale 0 e quelli nell'altro gruppo abbiano valore iniziale 1.\\
+		\textbf{Convergenza lenta $y(0)$:} Con \(y(0)\), il tempo di convergenza scala quadraticamente con \(n\). Questo è dovuto al fatto che la struttura alternata richiede che i gruppi convergano internamente prima di poter convergere tra loro. Questo fenomeno è dominato dal collo di bottiglia rappresentato dal singolo arco che connette i due gruppi. $y(0)$ è fatta in modo che i nodi all'interno dei gruppi abbiano valori alternati, in modo che i valori iniziali siano distribuiti tra 0 e 1 all'interno dei gruppi stessi.
 	\end{itemize} 
+	\centering \textbf{Esercizio 2}\\
+	\begin{itemize}
+		\item \textbf{Punto a: }
+		Dopo alcuni tentativi ho trovato che il nodo stubborn $P_B$ con opinione zero va posto nel nodo rosso\\
+		\[
+		\begin{tikzpicture}[level distance=1.5cm, sibling distance=2.5cm]
+			% Root node
+			\node[circle, draw, fill=black] {}
+			child {node[circle, draw] {}
+				child{node[circle, draw] {}}
+				child {node[circle, draw] {}}
+				child {node[circle, draw, fill=red] {}
+					child {node[circle, draw] {}}
+					child {node[circle, draw] {}}}}; % Primo figlio
+			
+		\end{tikzpicture}
+		\]
+		Ho disegnato solo la prima parte del grafo.\\
+		Ho calcolato che mettendo $P_B$ in quella posizione avrei ottenuto un ' opinione media di $\frac{10.5}{15}=0.7$ che è la minore possibile.\\
+		(Altre opinioni medie ottenute sono state 0.77 , 0.73 , 0.75 mettendo $P_B$ sui nodi estremi)
+		\item \textbf{Punto b: }
+		Dopo vari calcoli e tentativi, il posto migliore dove mettere $P_B$ in modo da avere l'opinione media minima è metterlo nel nodo nero. In questo modo la massima opinione media ottenibile è $\frac{6}{15}$.
+	\end{itemize}
+	\centering \textbf{Esercizio 3}\\
+	\begin{itemize}
+		\item \textbf{Punto a: }
+		Come prima cosa calcolo la matrice P normalizzata\\
+		\[
+		P = \begin{pmatrix}
+			0 & \frac{1}{2} & 0 & \frac{1}{2} \\
+			0 & 0 & \frac{1}{2} & \frac{1}{2} \\
+			\frac{1}{2} & 0 & 0 & \frac{1}{2} \\
+			\frac{1}{3} & \frac{1}{3} & \frac{1}{3} & 0
+		\end{pmatrix}.
+		\]
+		Successivamente calcolo la distribuzione stazionaria $\pi$ tali che \\
+		\[
+		\pi = \pi P
+		\]
+		Risolvendo i calcoli ottengo\\
+		\[
+		\pi = \left( \frac{2}{9} \quad \frac{2}{9} \quad \frac{2}{9} \quad \frac{1}{3} \right)
+		\]
+		Il consenso asintotico vale\\
+		\[
+		\lim_{t \to \infty} x(t) = \pi' x(0)
+		\]
+		Quindi la varianza sarà\\
+		\[
+		\text{Var}(x^*) = \sum_{i=1}^4 \pi_i^2 \sigma_i^2 
+		= \left( \frac{2}{9} \right)^2 (0.1) 
+		+ \left( \frac{2}{9} \right)^2 (0.2) 
+		+ \left( \frac{2}{9} \right)^2 (0.3) 
+		+ \left( \frac{1}{3} \right)^2 (0.2).
+		\]
+		Calcoliamo e otteniamo $\frac{7}{135} = 0.052$
+		\item \textbf{Punto b: }
+		Sappiamo che la varianza al valore del consenso si calcola\\
+		\[
+			\text{Var}(x^*) = \sum_{i=1}^4 \pi_i^2 \sigma_i^2 
+		\]
+		quindi per minimizzarla possiamo pensare di avere la distribuzione invariante $\pi_i$ proporzionale all'inverso della varianza $\sigma_i^2$.
+		Ricordiamo che la distribuzione invariante deve sommare a 1, quindi possiamo scrivere\\
+		\[
+		\pi_i = \frac{\frac{1}{\sigma_i^2}}{\sum_j \frac{1}{\sigma_j^2}}.
+		\]
+		dove al numeratore abbiamo l'inverso della varianza, mentre al denominatore abbiamo la somma di tutti gli inversi delle varianze al fine di far sommare a 1 la distribuzione invariante.
+		\item \textbf{Punto c: }
+		La nuova matrice di adiacenza varia, avendo sulla diagonale i termini $a_i$. Di conseguenza la somma di ogni riga sarà $2+a_1, 2+a_2, 2+a_3, 3+a_4$. Per prima cosa dobbiamo trovare la nuova distribuzione invariante che è nella forma\\
+		\[
+		\pi=(\frac{2+a_1}{9+\sum_{i=1}^4 a_i},\frac{2+a_2}{9+\sum_{i=1}^4 a_i},\frac{2+a_3}{9+\sum_{i=1}^4 a_i},\frac{3+a_4}{9+\sum_{i=1}^4 a_i},)
+		\]
+		Successivamente , in base a quanto scritto nel punto b), per minimizzare la varianza dobbiamo rendere $\pi$ più uniforme: impostiamo che il rapporto tra la somma di ogni riga e l'inverso della varianza siano costanti\\
+		\[
+		\frac{2+a_1}{\sigma_1^{-1}}=\frac{2+a_2}{\sigma_2^{-1}}=\frac{2+a_3}{\sigma_3^{-1}}=\frac{3+a_4}{\sigma_4^{-1}}=k
+		\]
+		Per soddisfare la proporzionalità:
+		\[
+		d_i + a_i = k \cdot \sigma_i^{-1},
+		\]
+		dove \(k\) è una costante di proporzionalità.
+		
+		Sommiamo \(d_i + a_i\) per trovare \(k\). Poiché \(\sum_i \pi_i = 1\), abbiamo:
+		\[
+		\sum_{i=1}^4 (d_i + a_i) = \sum_{i=1}^4 k \cdot \sigma_i^{-1}.
+		\]
+		
+		Calcoliamo:
+		\[
+		\sum_{i=1}^4 \sigma_i^{-1} = 10 + 5 + \frac{10}{3} + 5 = \frac{70}{3}.
+		\]
+		
+		Quindi:
+		\[
+		\sum_{i=1}^4 (d_i + a_i) = \sum_{i=1}^4 d_i + \sum_{i=1}^4 a_i = 9 + \sum_{i=1}^4 a_i.
+		\]
+		
+		Da qui otteniamo:
+		\[
+		k =\frac{3}{70} (9 + \sum_{i=1}^4 a_i).
+		\]
+		Infine per ciascuna \(i\):
+		\[
+		a_i = k \cdot \sigma_i^{-1} - d_i.
+		\]
+		
+		Sostituendo \(k\) e risolvendo per \(a_i\), otteniamo:
+		\[
+		a_1 \approx 1.2, \quad a_2 \approx 1.1, \quad a_3 \approx 0.7, \quad a_4 \approx 0.5.
+		\]
+		
+		\item \textbf{Punto d: }
+		Come distribuzione invariante abbiamo sempre\\
+		\[
+		\pi = \left( \frac{2}{9} \quad \frac{2}{9} \quad \frac{2}{9} \quad \frac{1}{3} \right)
+		\]
+		Adesso per calcolare la varianza lo dobbiamo fare in forma vettoriale, cioè\\
+		\[
+		\text{Var}(x^*) = \pi^\top A \pi
+		\]
+		dove A è la matrice di covarianza.\\
+		Svolgiamo i calcoli e otteniamo\\
+		\[
+		\text{Var}(x^*) = \frac{83}{810}=0.102
+		\]
+		\item \textbf{Punto e: }
+		
+	\end{itemize}
+	\centering \textbf{Esercizio 4}\\
+	\begin{itemize}
+		\item \textbf{Punto a: }
+		Il tempo atteso tra un'infezione e la successiva ha una distribuzione esponenziale con tasso \(\beta B(t)\).
+		
+		Condizionando allo stato \(X(t)\), il tempo medio di attesa per la prossima infezione è:
+		\[
+		\frac{1}{\beta B(t)}.
+		\]
+		
+		Sommando su tutte le infezioni fino a \(N(t) = n\) (cioè fino a quando tutti i nodi sono infetti) e considerando che la conduttanza \(\gamma(k)\) fornisce un limite inferiore a \(B(t)\), che a sua volta influenza il tempo di assorbimento, otteniamo:
+		\[
+		\tau \leq \frac{1}{\beta} \sum_{k=1}^{n-1} \frac{1}{\gamma(k)}.
+		\]
+		Sappiamo inoltre che la conduttanza è simmetrica, ovvero:\\
+		\[
+		\gamma(k)=\gamma(n-k)
+		\]
+		in quanto ci troviamo in un grafo non orientato.\\
+		
+		Utilizziamo quindi la simmetria della conduttanza:
+		\[
+		\tau \leq \frac{1}{\beta} \sum_{k=1}^{n-1} \frac{1}{\gamma(k)} \leq \frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\gamma(k)}.
+		\]
+		\item \textbf{Punto b: }
+		In base ai dati del testo possiamo riscrivere la disuguaglianza del punto a) come:\\
+		\[
+		\tau \leq \frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\sqrt{2k}}
+		\]
+		Riscriviamo la somma come:\\
+		\[
+		\tau \leq \frac{\sqrt{2}}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\sqrt{k}}
+		\]
+		La somma \(\sum_{k=1}^N \frac{1}{\sqrt{k}}\) è nota per essere approssimabile per \(N\) grande come:
+		\[
+		\sum_{k=1}^N \frac{1}{\sqrt{k}} \sim 2\sqrt{N}.
+		\]
+		Quindi per $N$ grande, possiamo stimare.\\
+		\[
+		\sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\sqrt{k}} \sim 2\sqrt{\lfloor n/2 \rfloor}.
+		\]
+		Sostituendo il risultato nella formula di \(\tau\):
+		\[
+		\tau \leq \frac{\sqrt{2}}{\beta} \cdot 2\sqrt{\lfloor n/2 \rfloor}.
+		\]
+		
+		Per \(n\) grande, \(\lfloor n/2 \rfloor \sim n/2\), quindi:
+		\[
+		\tau \sim \frac{\sqrt{2}}{\beta} \cdot 2\sqrt{\frac{n}{2}} = \frac{2}{\beta} \sqrt{n}.
+		\]
+		In conclusione possiamo affermare che $\tau$ in una griglia bidimensionale cresce come:\\
+		\[
+		\tau \sim \frac{\sqrt{n}}{\beta}
+		\]
+		\item \textbf{Punto c: } Il grafo di Barbell è diviso in due grafi completi collegati da un unico arco (chiamiamoli $C_1$ e $C_2$).
+		Calcoliamo ora la conduttanza.\\
+		La conduttanza è:
+		\[
+		\gamma(k) = \min_{S \subseteq V, |S|=k} \sum_{i \in S} \sum_{j \in V \setminus S} W_{ij}.
+		\]
+		
+		Due casi principali:
+		\begin{itemize}
+			\item \textbf{Caso 1:} tutti i nodi infetti sono in un solo grafo.
+			\begin{itemize}
+				\item Supponiamo che i \(k\) nodi infetti siano in \(C_1\).
+				\item I nodi di \(C_1\) sono fortemente connessi, ma i collegamenti con \(C_2\) sono limitati al singolo arco.
+				\item In questo caso, il flusso minimo è dato solo dal collegamento tra $C_1$ e $C_2$:
+				\[
+				\gamma(k) = 1.
+				\]
+			\end{itemize}
+			\item \textbf{Caso 2:} almeno un nodo infetto è in entrambi i grafi.
+			\begin{itemize}
+				\item Una volta che un nodo in \(C_2\) viene infettato, l'infezione si propaga rapidamente all'interno di \(C_2\), grazie alla struttura di grafo completo.
+				\item In questo caso, la conduttanza cresce rapidamente perché i collegamenti interni dei grafi dominano:
+				\[
+				\gamma(k) \sim n.
+				\]
+			\end{itemize}
+		\end{itemize}
+		Dopo aver stimato il valore della conduttanza nei due casi, possiamo procedere con la stima del tempo $\tau$.
+		\newline
+		\textbf{Caso 1}: 
+		\begin{itemize}
+			\item Poiché \(\gamma(k) = 1\):
+			\[
+			\frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\gamma(k)} = \frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} 1 = \frac{n}{\beta}.
+			\]
+			Quindi per $n \rightarrow \infty$ il tempo $\tau$ si comporta come:\\
+			\[
+			\tau \sim \frac{n}{\beta}.
+			\]
+		\end{itemize}
+		\textbf{Caso 2}: 
+		\begin{itemize}
+			\item Poichè \(\gamma(k) = n\):
+			\[
+			\frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{\gamma(k)} = \frac{2}{\beta} \sum_{k=1}^{\lfloor n/2 \rfloor} \frac{1}{n} = \frac{2}{\beta} \frac{1}{n} \frac{n}{2} = \frac{1}{\beta}  .
+			\]
+			Quindi per $n \rightarrow \infty$ il tempo $\tau$ si comporta come:\\
+			\[
+			\tau \sim \frac{1}{\beta}.
+			\]
+		\end{itemize}
+		
+		
+	\end{itemize}
 	
 	
 \end{document}
