@@ -212,3 +212,92 @@ ylabel('Valore della Funzione Obiettivo');
 title('Convergenza del Metodo modified Newton sulla Funzione di Rosenbrock');
 legend show;
 grid on;
+
+
+
+matricole = [295706, 302689];
+rng(min(matricole));
+dimension = [3, 4, 5];
+n=10.^dimension;
+
+%%%%%%% Chained Rosenbrock function %%%%%%%
+
+chained_rosenbrock = @(x) sum(100 * (x(1:end-1).^2 - x(2:end)).^2 + (x(1:end-1) - 1).^2);
+
+function x0 = initial_solution(n)
+    % Definisce il punto iniziale per la Chained Rosenbrock function
+    % n: dimensione del problema
+    % x0: punto iniziale
+
+    x0 = zeros(1, n); % Inizializza il vettore
+    for i = 1:n
+        if mod(i, 2) == 1
+            x0(i) = -1.2; % Valore per indici dispari
+        else
+            x0(i) = 1.0;  % Valore per indici pari
+        end
+    end
+end
+
+%Testo per le 3 dimensioni
+for j=n
+    max_iter = j+0.3.*j;  % Maximum number of iterations
+    x0= initial_solution(j);
+
+    % Run Nelder-Mead 
+    [x_min1, f_min1, iter1, min_history1] = nelder_mead(chained_rosenbrock, x0, tol, max_iter);
+
+% Display results
+fprintf('*** Nelder-Mead result dimension %d***\n',j);
+fprintf('Starting point: Solution 0\n');
+fprintf('Minimum found: [%f, %f]\n', x_min1(1), x_min1(2));
+fprintf('Function value: %f\n', f_min1);
+fprintf('Iterations: %d\n\n', iter1);
+
+% Plot figures
+iterations_1=0:iter1-1;
+
+figure;
+plot(iterations_1, min_history1, '-o', 'DisplayName', 'Solution 0');
+xlabel('Numero di Iterazioni');
+ylabel('Valore della Funzione Obiettivo');
+title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
+legend show;
+grid on;
+
+% Generazione di 10 nuovi punti casuali nell'iper-cubo
+num_points = 10;
+random_points = zeros(num_points, j);
+
+for i = 1:num_points
+    random_points(i, :) = x0 + (2 * rand(1, j) - 1); % Genera nel range [x_i - 1, x_i + 1]
+end
+
+%Testo l'algoritmo nelder mead con i nuovi 10 punti
+for i=1:num_points
+
+    x0_new = random_points(i,:);
+
+    [x_min, f_min, iter, min_history] = nelder_mead(chained_rosenbrock, x0_new, tol, max_iter);
+    
+    % Display results
+    fprintf('*** Nelder-Mead result dimension %d***\n',j);
+    fprintf('Starting point: Solution %d\n', i);
+    fprintf('Minimum found: [%f, %f]\n', x_min(1), x_min(2));
+    fprintf('Function value: %f\n', f_min);
+    fprintf('Iterations: %d\n\n', iter);
+
+    % Plot figures
+    iterations_1=0:iter-1;
+
+    figure;
+    display_name = sprintf('Solution %d', i);
+    plot(iterations_1, min_history, '-o', 'DisplayName', display_name);
+    xlabel('Numero di Iterazioni');
+    ylabel('Valore della Funzione Obiettivo');
+    title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
+    legend show;
+    grid on;
+end
+
+end

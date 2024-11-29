@@ -179,60 +179,70 @@
 		\]
 		Calcoliamo e otteniamo $\frac{7}{135} = 0.052$
 		\item \textbf{Punto b: }
-		Sappiamo che la varianza al valore del consenso si calcola\\
+		La varianza del valore di consenso asintotico in forma vettoriale è:
 		\[
-			\text{Var}(x^*) = \sum_{i=1}^4 \pi_i^2 \sigma_i^2 
+		\text{Var}(x^*) = \pi^\top \Sigma \pi,
 		\]
-		quindi per minimizzarla possiamo pensare di avere la distribuzione invariante $\pi_i$ proporzionale all'inverso della varianza $\sigma_i^2$.
-		Ricordiamo che la distribuzione invariante deve sommare a 1, quindi possiamo scrivere\\
+		dove:
+		\begin{itemize}
+			\item \(\pi\) è il vettore delle probabilità invarianti,
+			\item \(\Sigma\) è la matrice delle varianze iniziali delle opinioni (in questo caso ha solo le varianze sulla diagonale).
+		\end{itemize}
+		Per trovare il valore che $\pi$ dovrebbe assumere per minimizzare la varianza impostiamo un piccolo problema di ottimizzazione vincolata:\\
+		\[
+		\begin{aligned}
+			& \text{Minimizzare} \quad \text{Var}(x^*) = \pi^\top \Sigma \pi \\
+			& \text{vincoli:} \\
+			& \begin{cases}
+				\pi^\top 1 = \sum_i \pi_i = 1, \\
+				\pi_i \geq 0.
+			\end{cases}
+		\end{aligned}
+		\]
+		Risolviamo con il metodo del lagrangiano e otteniamo:\\
+		\[
+		\pi = \frac{\Sigma^{-1} \mathbf{1}}{\mathbf{1}' \Sigma^{-1} \mathbf{1}}.
+		\]
+		Riscrivendo questo risultato in termini non vettoriali otteniamo:\\
 		\[
 		\pi_i = \frac{\frac{1}{\sigma_i^2}}{\sum_j \frac{1}{\sigma_j^2}}.
 		\]
-		dove al numeratore abbiamo l'inverso della varianza, mentre al denominatore abbiamo la somma di tutti gli inversi delle varianze al fine di far sommare a 1 la distribuzione invariante.
 		\item \textbf{Punto c: }
 		La nuova matrice di adiacenza varia, avendo sulla diagonale i termini $a_i$. Di conseguenza la somma di ogni riga sarà $2+a_1, 2+a_2, 2+a_3, 3+a_4$. Per prima cosa dobbiamo trovare la nuova distribuzione invariante che è nella forma\\
 		\[
 		\pi=(\frac{2+a_1}{9+\sum_{i=1}^4 a_i},\frac{2+a_2}{9+\sum_{i=1}^4 a_i},\frac{2+a_3}{9+\sum_{i=1}^4 a_i},\frac{3+a_4}{9+\sum_{i=1}^4 a_i},)
 		\]
-		Successivamente , in base a quanto scritto nel punto b), per minimizzare la varianza dobbiamo rendere $\pi$ più uniforme: impostiamo che il rapporto tra la somma di ogni riga e l'inverso della varianza siano costanti\\
+		Dal punto precedente sappiamo che per minimizzare la varianza, $\pi$ deve essere nella forma:\\
 		\[
-		\frac{2+a_1}{\sigma_1^{-1}}=\frac{2+a_2}{\sigma_2^{-1}}=\frac{2+a_3}{\sigma_3^{-1}}=\frac{3+a_4}{\sigma_4^{-1}}=k
+		\pi_i = \frac{\frac{1}{\sigma_i^2}}{\sum_j \frac{1}{\sigma_j^2}}.
 		\]
-		Per soddisfare la proporzionalità:
+		Calcoliamo i valori di $\pi$ nel nostro caso:\\
 		\[
-		d_i + a_i = k \cdot \sigma_i^{-1},
+		\sum_j \frac{1}{\sigma_j^2}=10+5+5+\frac{10}{3}=\frac{70}{3}
 		\]
-		dove \(k\) è una costante di proporzionalità.
-		
-		Sommiamo \(d_i + a_i\) per trovare \(k\). Poiché \(\sum_i \pi_i = 1\), abbiamo:
+		quindi\\
 		\[
-		\sum_{i=1}^4 (d_i + a_i) = \sum_{i=1}^4 k \cdot \sigma_i^{-1}.
+		\begin{cases}
+			\pi_1=10 \cdot \frac{3}{70}=\frac{3}{7}\\
+			\pi_2=5 \cdot \frac{3}{70}=\frac{3}{14}\\
+			\pi_3=\frac{10}{3} \cdot \frac{3}{70}=\frac{1}{7}\\
+			\pi_4=5 \cdot \frac{3}{70}=\frac{3}{14}\\
+		\end{cases}
 		\]
-		
-		Calcoliamo:
+		Questi sono i valori di $\pi$ per cui la varianza è minimizzata.\\
+		Adesso uguagliamo questi valori con i corrispettivi valori della $\pi$ del nuovo grafo:\\
 		\[
-		\sum_{i=1}^4 \sigma_i^{-1} = 10 + 5 + \frac{10}{3} + 5 = \frac{70}{3}.
+		\begin{cases}
+			\frac{2+a_1}{9+\sum_{i=1}^4 a_i}=\frac{3}{7}\\
+			\frac{2+a_2}{9+\sum_{i=1}^4 a_i}=\frac{3}{14}\\
+			\frac{2+a_3}{9+\sum_{i=1}^4 a_i}=\frac{1}{7}\\
+			\frac{3+a_4}{9+\sum_{i=1}^4 a_i}=\frac{3}{14}
+		\end{cases}
 		\]
-		
-		Quindi:
+		Otteniamo che il vettore $\alpha$ vale:\\
 		\[
-		\sum_{i=1}^4 (d_i + a_i) = \sum_{i=1}^4 d_i + \sum_{i=1}^4 a_i = 9 + \sum_{i=1}^4 a_i.
+		\alpha=(4\quad 1\quad 0\quad 0)
 		\]
-		
-		Da qui otteniamo:
-		\[
-		k =\frac{3}{70} (9 + \sum_{i=1}^4 a_i).
-		\]
-		Infine per ciascuna \(i\):
-		\[
-		a_i = k \cdot \sigma_i^{-1} - d_i.
-		\]
-		
-		Sostituendo \(k\) e risolvendo per \(a_i\), otteniamo:
-		\[
-		a_1 \approx 1.2, \quad a_2 \approx 1.1, \quad a_3 \approx 0.7, \quad a_4 \approx 0.5.
-		\]
-		
 		\item \textbf{Punto d: }
 		Come distribuzione invariante abbiamo sempre\\
 		\[
@@ -240,15 +250,80 @@
 		\]
 		Adesso per calcolare la varianza lo dobbiamo fare in forma vettoriale, cioè\\
 		\[
-		\text{Var}(x^*) = \pi^\top A \pi
+		\text{Var}(x^*) = \pi^\top \Sigma \pi
 		\]
-		dove A è la matrice di covarianza.\\
+		dove $\Sigma$ è la matrice di covarianza.\\
+		Otteniamo \\
+		\[
+		\text{Var}(x^*) =
+		\begin{bmatrix}
+			\frac{2}{9} & \frac{2}{9} & \frac{2}{9} & \frac{1}{3} 
+		\end{bmatrix}
+		\begin{bmatrix}
+			0.2 & 0.1 & 0.1 & 0 \\
+			0.1 & 0.3 & 0 & 0 \\
+			0.1 & 0 & 0.2 & 0.1 \\
+			0 & 0 & 0.1 & 0.3
+		\end{bmatrix}	
+		\begin{bmatrix}
+			\frac{2}{9}\\  \frac{2}{9}\\  \frac{2}{9}\\  \frac{1}{3} 
+		\end{bmatrix}
+		\]
 		Svolgiamo i calcoli e otteniamo\\
 		\[
 		\text{Var}(x^*) = \frac{83}{810}=0.102
 		\]
 		\item \textbf{Punto e: }
-		
+		Per trovare $\pi$ usiamo la forma vettoriale ottenuta sempre nel punto b)\\
+		\[
+		\pi = \frac{\Sigma^{-1} \mathbf{1}}{\mathbf{1}' \Sigma^{-1} \mathbf{1}}.
+		\]
+		Per calcolare la matrice inversa e ottenere i valori di $\pi$ che minimizzerebbero la varianza calcoliamo questo rapporto in matlab ed otteniamo:\\
+		\begin{itemize}
+			\item Come matrice inversa $\Sigma^{-1}$\\
+			\[
+			\begin{bmatrix}
+				9.3750 & -3.1250 & -5.6250 & 1.8750 \\
+				-3.1250 & 4.3750 & 1.8750 & -0.6250 \\
+				-5.6250 & 1.8750 & 9.3750 & -3.1250 \\
+				1.8750 & -0.6250 & -3.1250 & 4.3750
+			\end{bmatrix}
+			\]
+			\item Come numeratore\\
+			\[
+			\begin{bmatrix}
+				2.5 & 2.5 & 2.5 & 2.5
+			\end{bmatrix}
+			\]
+			\item Come denominatore\\
+			\[
+			10
+			\]
+			\item Infine otteniamo che la $\pi$ che minimizza la varianza vale\\
+			\[
+			\pi=
+			\begin{bmatrix}
+				\frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} 
+			\end{bmatrix}
+			\]
+		\end{itemize}
+		Sappiamo che la $\pi$ del nostro grafo vale\\
+		\[
+		\pi=(\frac{2+a_1}{9+\sum_{i=1}^4 a_i},\frac{2+a_2}{9+\sum_{i=1}^4 a_i},\frac{2+a_3}{9+\sum_{i=1}^4 a_i},\frac{3+a_4}{9+\sum_{i=1}^4 a_i})
+		\]
+		Adesso uguagliamo questi valori con i corrispettivi valori della $\pi$ del nuovo grafo:\\
+		\[
+		\begin{cases}
+			\frac{2+a_1}{9+\sum_{i=1}^4 a_i}=\frac{1}{4}\\
+			\frac{2+a_2}{9+\sum_{i=1}^4 a_i}=\frac{1}{4}\\
+			\frac{2+a_3}{9+\sum_{i=1}^4 a_i}=\frac{1}{4}\\
+			\frac{3+a_4}{9+\sum_{i=1}^4 a_i}=\frac{1}{4}
+		\end{cases}
+		\]
+		Otteniamo che il vettore $\alpha$ vale:\\
+		\[
+		\alpha=(1\quad 1\quad 1\quad 0)
+		\]
 	\end{itemize}
 	\centering \textbf{Esercizio 4}\\
 	\begin{itemize}
