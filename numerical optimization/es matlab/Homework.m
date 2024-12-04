@@ -69,9 +69,10 @@ function [x_min, f_min, iter, min_history] = nelder_mead(f, x0, tol, max_iter)
         end
 
         % Check convergence
-        if std(f_vals) < tol
+        if std(f_vals) < tol || (iter > 45 && abs(f_vals(1) - min_history(end)) < tol)%se ce poco variazione tra un iterata e l'altra
             break;
         end
+
         iter = iter + 1;
     end
 
@@ -218,7 +219,7 @@ grid on;
 matricole = [295706, 302689];
 rng(min(matricole));
 dimension = [3, 4, 5];
-n=10.^dimension;
+n=10.^3;
 
 %%%%%%% Chained Rosenbrock function %%%%%%%
 
@@ -241,7 +242,7 @@ end
 
 %Testo per le 3 dimensioni
 for j=n
-    max_iter = j+0.3.*j;  % Maximum number of iterations
+    max_iter = j;  % Maximum number of iterations
     x0= initial_solution(j);
 
     % Run Nelder-Mead 
@@ -250,12 +251,11 @@ for j=n
 % Display results
 fprintf('*** Nelder-Mead result dimension %d***\n',j);
 fprintf('Starting point: Solution 0\n');
-fprintf('Minimum found: [%f, %f]\n', x_min1(1), x_min1(2));
 fprintf('Function value: %f\n', f_min1);
 fprintf('Iterations: %d\n\n', iter1);
 
 % Plot figures
-iterations_1=0:iter1-1;
+iterations_1=0:iter1;
 
 figure;
 plot(iterations_1, min_history1, '-o', 'DisplayName', 'Solution 0');
@@ -267,35 +267,201 @@ grid on;
 
 % Generazione di 10 nuovi punti casuali nell'iper-cubo
 num_points = 10;
-random_points = zeros(num_points, j);
 
-for i = 1:num_points
-    random_points(i, :) = x0 + (2 * rand(1, j) - 1); % Genera nel range [x_i - 1, x_i + 1]
-end
+random_points = x0 + (2 * rand(num_points, j) - 1);
+
+% Preallocazione per i risultati
+results = cell(num_points, 1);
 
 %Testo l'algoritmo nelder mead con i nuovi 10 punti
-for i=1:num_points
+parfor i=1:num_points
 
     x0_new = random_points(i,:);
 
     [x_min, f_min, iter, min_history] = nelder_mead(chained_rosenbrock, x0_new, tol, max_iter);
     
-    % Display results
-    fprintf('*** Nelder-Mead result dimension %d***\n',j);
-    fprintf('Starting point: Solution %d\n', i);
-    fprintf('Minimum found: [%f, %f]\n', x_min(1), x_min(2));
-    fprintf('Function value: %f\n', f_min);
-    fprintf('Iterations: %d\n\n', iter);
+    % Salva i risultati
+    results{i}.x_min = x_min;
+    results{i}.f_min = f_min;
+    results{i}.iter = iter;
+    results{i}.min_history = min_history;
 
+end
+
+% Post-elaborazione
+for i = 1:num_points
+    fprintf('Punto casuale %d: Valore minimo = %f, Iterazioni = %d\n', ...
+            i, results{i}.f_min, results{i}.iter);
     % Plot figures
-    iterations_1=0:iter-1;
+    iterations_1=0:iter1;
 
     figure;
     display_name = sprintf('Solution %d', i);
-    plot(iterations_1, min_history, '-o', 'DisplayName', display_name);
+    plot(iterations_1, results{i}.min_history, '-o', 'DisplayName', display_name);
     xlabel('Numero di Iterazioni');
     ylabel('Valore della Funzione Obiettivo');
     title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
+    legend show;
+    grid on;
+end
+
+
+end
+
+
+%%%%%%% Generalized Broyden tridiagonal function %%%%%%%
+
+generalized_broyden = @(x) sum( abs((3 - 2 * x(2:end-1)) .* x(2:end-1) - x(1:end-2) - x(3:end) + 1).^(7/3));
+
+function x0 = initial_solution_gb(n)
+    % Definisce il punto iniziale per la Generalized Broyden tridiagonal function
+    % n: dimensione del problema
+    % x0: punto iniziale
+
+    x0 = [0, -1*ones(1, n), 0];
+end
+
+%Testo per le 3 dimensioni
+for j=n
+    max_iter = j;  % Maximum number of iterations
+    x0= initial_solution_gb(j);
+
+    % Run Nelder-Mead 
+    [x_min1, f_min1, iter1, min_history1] = nelder_mead(generalized_broyden, x0, tol, max_iter);
+
+% Display results
+fprintf('*** Nelder-Mead result dimension %d***\n',j);
+fprintf('Starting point: Solution 0\n');
+fprintf('Function value: %f\n', f_min1);
+fprintf('Iterations: %d\n\n', iter1);
+
+% Plot figures
+iterations_1=0:iter1;
+
+figure;
+plot(iterations_1, min_history1, '-o', 'DisplayName', 'Solution 0');
+xlabel('Numero di Iterazioni');
+ylabel('Valore della Funzione Obiettivo');
+title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
+legend show;
+grid on;
+
+% Generazione di 10 nuovi punti casuali nell'iper-cubo
+num_points = 10;
+
+random_points = x0 + (2 * rand(num_points, j+2) - 1);
+
+% Preallocazione per i risultati
+results = cell(num_points, 1);
+
+%Testo l'algoritmo nelder mead con i nuovi 10 punti
+parfor i=1:num_points
+
+    x0_new = random_points(i,:);
+
+    [x_min, f_min, iter, min_history] = nelder_mead(generalized_broyden, x0_new, tol, max_iter);
+    
+    % Salva i risultati
+    results{i}.x_min = x_min;
+    results{i}.f_min = f_min;
+    results{i}.iter = iter;
+    results{i}.min_history = min_history;
+
+end
+
+% Post-elaborazione
+for i = 1:num_points
+    fprintf('Punto casuale %d: Valore minimo = %f, Iterazioni = %d\n', ...
+            i, results{i}.f_min, results{i}.iter);
+    % Plot figures
+    iterations_1=0:iter1;
+
+    figure;
+    display_name = sprintf('Solution %d', i);
+    plot(iterations_1, results{i}.min_history, '-o', 'DisplayName', display_name);
+    xlabel('Numero di Iterazioni');
+    ylabel('Valore della Funzione Obiettivo');
+    title('Convergenza Nelder-Mead Funzione di Generalized Broyden tridiagonal ');
+    legend show;
+    grid on;
+end
+
+end
+
+
+%%%%%%% Banded trigonometric %%%%%%%
+
+banded_trigonometric = @(x) sum((1:numel(x)-2) .* (1 - cos(x(2:end-1)) + sin(x(1:end-2)) - sin(x(3:end))));
+
+function x0 = initial_solution_bt(n)
+    % Definisce il punto iniziale per la Generalized Broyden tridiagonal function
+    % n: dimensione del problema
+    % x0: punto iniziale
+
+    x0 = [0, ones(1, n), 0];
+end
+
+%Testo per le 3 dimensioni
+for j=n
+    max_iter = j;  % Maximum number of iterations
+    x0= initial_solution_bt(j);
+
+    % Run Nelder-Mead 
+    [x_min1, f_min1, iter1, min_history1] = nelder_mead(banded_trigonometric, x0, tol, max_iter);
+
+% Display results
+fprintf('*** Nelder-Mead result dimension %d***\n',j);
+fprintf('Starting point: Solution 0\n');
+fprintf('Function value: %f\n', f_min1);
+fprintf('Iterations: %d\n\n', iter1);
+
+% Plot figures
+iterations_1=0:iter1;
+
+figure;
+plot(iterations_1, min_history1, '-o', 'DisplayName', 'Solution 0');
+xlabel('Numero di Iterazioni');
+ylabel('Valore della Funzione Obiettivo');
+title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
+legend show;
+grid on;
+
+% Generazione di 10 nuovi punti casuali nell'iper-cubo
+num_points = 10;
+
+random_points = x0 + (2 * rand(num_points, j+2) - 1);
+
+% Preallocazione per i risultati
+results = cell(num_points, 1);
+
+%Testo l'algoritmo nelder mead con i nuovi 10 punti
+parfor i=1:num_points
+
+    x0_new = random_points(i,:);
+
+    [x_min, f_min, iter, min_history] = nelder_mead(banded_trigonometric, x0_new, tol, max_iter);
+    
+    % Salva i risultati
+    results{i}.x_min = x_min;
+    results{i}.f_min = f_min;
+    results{i}.iter = iter;
+    results{i}.min_history = min_history;
+
+end
+
+% Post-elaborazione
+for i = 1:num_points
+    fprintf('Punto casuale %d: Valore minimo = %f, Iterazioni = %d\n', ...
+            i, results{i}.f_min, results{i}.iter);
+    % Plot figures
+    iterations_1=0:iter1;
+
+    figure;
+    display_name = sprintf('Solution %d', i);
+    plot(iterations_1, results{i}.min_history, '-o', 'DisplayName', display_name);
+    xlabel('Numero di Iterazioni');
+    ylabel('Valore della Funzione Obiettivo');
+    title('Convergenza Nelder-Mead Funzione di Banded trigonometric ');
     legend show;
     grid on;
 end
