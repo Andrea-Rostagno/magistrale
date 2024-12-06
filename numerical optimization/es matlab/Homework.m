@@ -218,7 +218,7 @@ grid on;
 
 matricole = [295706, 302689];
 rng(min(matricole));
-n=[10, 24, 50];
+n=[10, 25, 50];
 
 %%%%%%% Chained Rosenbrock function %%%%%%%
 
@@ -273,7 +273,7 @@ random_points = x0 + (2 * rand(num_points, j) - 1);
 results = cell(num_points, 1);
 
 %Testo l'algoritmo nelder mead con i nuovi 10 punti
-parfor i=1:num_points
+for i=1:num_points
 
     x0_new = random_points(i,:);
 
@@ -354,7 +354,7 @@ random_points = x0 + (2 * rand(num_points, j+2) - 1);
 results = cell(num_points, 1);
 
 %Testo l'algoritmo nelder mead con i nuovi 10 punti
-parfor i=1:num_points
+for i=1:num_points
 
     x0_new = random_points(i,:);
 
@@ -434,7 +434,7 @@ random_points = x0 + (2 * rand(num_points, j+2) - 1);
 results = cell(num_points, 1);
 
 %Testo l'algoritmo nelder mead con i nuovi 10 punti
-parfor i=1:num_points
+for i=1:num_points
 
     x0_new = random_points(i,:);
 
@@ -469,57 +469,58 @@ end
 
 
 
+n1=[1000, 10000, 100000];
 
-%%%%%%% Chained Wood function %%%%%%%
+%%%%%%% Chained Rosenbrock function %%%%%%%
 
-Chained_wood = @(x) sum(arrayfun(@(j) ...
-    100 * (x(2*j-1)^2 - x(2*j))^2 + (x(2*j-1) - 1)^2 + ...
-    90 * (x(2*j+1)^2 - x(2*j+2))^2 + (x(2*j+1) - 1)^2 + ...
-    10 * (x(2*j) + x(2*j+2) - 2)^2 + (x(2*j) - x(2*j+2))^2 / 10, ...
-    1:(length(x)-2)/2));
+chained_rosenbrock = @(x) sum(100 * (x(1:end-1).^2 - x(2:end)).^2 + (x(1:end-1) - 1).^2);
 
-function x0 = initial_solution_cw(n)
-    % Controlla che n sia pari e almeno 4
-    if mod(n, 2) ~= 0 || n < 4
-        error('n deve essere pari e maggiore o uguale a 4.');
+% Funzione gradiente di Rosenbrock concatenato
+function g = gradient_rosenbrock(x)
+    n = length(x);
+    g = zeros(n, 1);
+    g(1) = -400 * (x(2) - x(1)^2) * x(1) - 2 * (1 - x(1));
+    for i = 2:n-1
+        g(i) = 200 * (x(i) - x(i-1)^2) - 400 * (x(i+1) - x(i)^2) * x(i) - 2 * (1 - x(i));
     end
-
-    x0 = zeros(1, n); % Prealloca il vettore
-
-    for i = 1:n
-        if mod(i, 2) == 1 % Indice dispari
-            if i <= 4
-                x0(i) = -3;
-            else
-                x0(i) = -2;
-            end
-        else % Indice pari
-            if i <= 4
-                x0(i) = -1;
-            else
-                x0(i) = 0;
-            end
-        end
-    end
+    g(n) = 200 * (x(n) - x(n-1)^2);
 end
 
+% Funzione Hessiana di Rosenbrock concatenato
+function H = hessian_rosenbrock(x)
+    n = length(x);
+    H = zeros(n, n);
+    H(1,1)=1200 * x(1)^2 - 400 * x(2) + 2;
+    H(1, 2) = -400 * x(1);
+    H(2, 1) = H(1, 2);
+    for i = 2:n-1
+        H(i, i) = 1200 * x(i)^2 - 400 * x(i+1) + 2 + 200;
+        H(i, i+1) = -400 * x(i);
+        H(i+1, i) = H(i, i+1);
+    end
+    H(n, n) = 200;
+end
 
-%Testo per le 3 dimensioni
-for j=n
-    max_iter = 10000;  % Maximum number of iterations
-    x0= initial_solution_cw(j);
+grad_f_rosenbrock = @(x) gradient_rosenbrock(x);
+hess_f_rosenbrock = @(x) hessian_rosenbrock(x);
 
-    % Run Nelder-Mead 
-    [x_min1, f_min1, iter1, min_history1] = nelder_mead(Chained_wood, x0, tol, max_iter);
+for j=1000
 
-% Display results
-fprintf('*** Nelder-Mead result dimension %d***\n',j);
-fprintf('Starting point: Solution 0\n');
-fprintf('Function value: %f\n', f_min1);
-fprintf('Iterations: %d\n\n', iter1);
+    max_iter = 1000;  % Maximum number of iterations
+    x0= initial_solution(j);
 
-% Plot figures
-iterations_1=0:iter1;
+    %Run modified newton
+    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0, tol, max_iter);
+
+    % Display results
+    fprintf('*** Modified newton result dimension %d***\n',j);
+    fprintf('Starting point: Solution 0\n');
+    fprintf('Function value: %f\n', f_min);
+    fprintf('Iterations: %d\n\n', iter);
+
+
+    % Plot figures
+iterations_1=0:iter;
 
 % figure;
 % %plot(iterations_1, min_history1, '-o', 'DisplayName', 'Solution 0');
@@ -537,12 +538,12 @@ random_points = x0 + (2 * rand(num_points, j) - 1);
 % Preallocazione per i risultati
 results = cell(num_points, 1);
 
-%Testo l'algoritmo nelder mead con i nuovi 10 punti
+%Testo l'algoritmo modified newton con i nuovi 10 punti
 parfor i=1:num_points
 
     x0_new = random_points(i,:);
 
-    [x_min, f_min, iter, min_history] = nelder_mead(Chained_wood, x0_new, tol, max_iter);
+    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0_new, tol, max_iter);
     
     % Salva i risultati
     results{i}.x_min = x_min;
@@ -557,16 +558,18 @@ for i = 1:num_points
     fprintf('Punto casuale %d: Valore minimo = %f, Iterazioni = %d\n', ...
             i, results{i}.f_min, results{i}.iter);
     % Plot figures
-    iterations_1=0:iter1;
+    iterations_1=0:iter;
 
     % figure;
     % display_name = sprintf('Solution %d', i);
     % %plot(iterations_1, results{i}.min_history, '-o', 'DisplayName', display_name);
     % xlabel('Numero di Iterazioni');
     % ylabel('Valore della Funzione Obiettivo');
-    % title('Convergenza Nelder-Mead Funzione di Banded trigonometric ');
+    % title('Convergenza Nelder-Mead Funzione di Chained Rosenbrock');
     % legend show;
     % grid on;
 end
+
+
 
 end
