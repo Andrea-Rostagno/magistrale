@@ -68,8 +68,17 @@ function [x_min, f_min, iter, min_history] = nelder_mead(f, x0, tol, max_iter)
             end
         end
 
+        [f_vals, idx] = sort(f_vals); % ordina in maniera crescente f_vals e restituisce il vettore idx con le rispettive posizioni degli elementi prima del riordinamento
+        simplex = simplex(idx, :); % Ordina i vertici del simplesso in modo che il primo vertice dia il primo valore in f_vals, il secondo ecc.
+        term_f = abs(f_vals(n+1) - f_vals(1)); 
+        
+        for i = 2:n+1
+            vectorNorm(i-1) = norm(simplex(i,:) - simplex(1,:), inf);
+        end
+        term_x = max(vectorNorm);
+
         % Check convergence
-        if std(f_vals)<tol       %abs(f_vals(1)-f(centroid)) < tol %se ce poco variazione tra un iterata e l'altra
+        if term_f <= tol || term_x <= tol %se ce poco variazione tra un iterata e l'altra
             break;
         end
 
@@ -81,12 +90,13 @@ function [x_min, f_min, iter, min_history] = nelder_mead(f, x0, tol, max_iter)
 end
 
 
-function [x_min, f_min, iter, min_history] = modified_newton(f, grad_f, hess_f, x0, tol, max_iter)
+function [x_min, f_min, iter, min_history] = modified_newton(f, grad_f, hess_f, x0, beta_N, tol, max_iter)
     % Input:
     % f: Function handle of the objective function
     % grad_f: Function handle of the gradient
     % hess_f: Function handle of the Hessian
     % x0: Initial guess (vector)
+    % beta_N: allow to compute the modified Hessian matrix 
     % tol: Tolerance for convergence
     % max_iter: Maximum number of iterations
 
@@ -96,15 +106,30 @@ function [x_min, f_min, iter, min_history] = modified_newton(f, grad_f, hess_f, 
     min_history=[f(x0)];
 
     while iter < max_iter
+        
         g = grad_f(x);
         H = hess_f(x);
 
         % Define Hessian matrix modified
-        tao = max( 0 , sqrt(eps) - min(eig(H)) );
-        H_mod= H + tao*eye(n);
+        m = min(diag(H));
+        if m > 0 
+            tao = 0;
+        else
+            tao = -m + beta_N;
+        end
 
-        % Newton direction
-        p = -H_mod \ g;
+        for k = 0:1000
+           
+           [L,flag] = chol(H + tao*eye(n));
+           if flag
+               tao = max(2*tao,beta_N);
+           else
+               break;
+           end
+        end
+
+        % Newton direction (solve the linear system using Cholesky)
+        p = L\(L'\(-g));
 
         % Backtracking line search
         alpha = 1;
@@ -149,6 +174,7 @@ x0_2 = [-1.2, 1.0];
 % Parameters
 tol = 1e-6;       % Tolerance for convergence
 max_iter = 1000;  % Maximum number of iterations
+beta_N=1e-3;
 
 % Run Nelder-Mead for both starting points
 [x_min1, f_min1, iter1, min_history1] = nelder_mead(rosenbrock, x0_1, tol, max_iter);
@@ -184,8 +210,8 @@ grid on;
 
 
 % Run Modified Newton for both starting points
-[x_min1, f_min1, iter1, min_history1] = modified_newton(rosenbrock, grad_rosenbrock, hess_rosenbrock, x0_1, tol, max_iter);
-[x_min2, f_min2, iter2, min_history2] = modified_newton(rosenbrock, grad_rosenbrock, hess_rosenbrock, x0_2, tol, max_iter);
+[x_min1, f_min1, iter1, min_history1] = modified_newton(rosenbrock, grad_rosenbrock, hess_rosenbrock, x0_1, beta_N, tol, max_iter);
+[x_min2, f_min2, iter2, min_history2] = modified_newton(rosenbrock, grad_rosenbrock, hess_rosenbrock, x0_2, beta_N, tol, max_iter);
 
 % Display results
 fprintf('*** Modified Newton result ***\n');
@@ -510,7 +536,7 @@ for j=1000
     x0= initial_solution(j);
 
     %Run modified newton
-    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0, tol, max_iter);
+    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0, beta_N, tol, max_iter);
 
     % Display results
     fprintf('*** Modified newton result dimension %d***\n',j);
@@ -543,8 +569,8 @@ parfor i=1:num_points
 
     x0_new = random_points(i,:);
 
-    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0_new, tol, max_iter);
-    
+    [x_min, f_min, iter, min_history] = modified_newton(chained_rosenbrock, grad_f_rosenbrock, hess_f_rosenbrock, x0_new, beta_N, tol, max_iter);
+
     % Salva i risultati
     results{i}.x_min = x_min;
     results{i}.f_min = f_min;
@@ -569,7 +595,5 @@ for i = 1:num_points
     % legend show;
     % grid on;
 end
-
-
 
 end

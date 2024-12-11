@@ -1,0 +1,190 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+
+
+\begin{document}
+	\title{\textbf{Homework2 Rostagno}}
+	\author{295706}
+	\date{\today}
+	\maketitle
+	
+	\begin{itemize}
+		\item \textbf{Esercizio 1: }
+		\begin{enumerate}[label=\alph*)]
+			\item Per determinare se la catena è esplosiva dobbiamo verificare che 
+			\[
+			\sum_{n=0}^\infty \frac{1}{\lambda_n} < \infty
+			\]
+			dove $\lambda_n(x)=q(x,x+1) + q(x,x-1)$.\\
+			Nel nostro caso abbiamo:\\
+			\[
+			\lambda(x) =
+			\begin{cases} 
+				q(x, x+1) = 2^x, & \text{se } x = 0, \\ 
+				q(x, x+1) + q(x, x-1) = 2^x + 2^{x+1} = 3 \cdot 2^x, & \text{se } x \geq 1.
+			\end{cases}
+			\]
+			La sommatoria da verificare è:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
+			\]
+			
+			Per \(x = 0\):
+			\[
+			\frac{1}{\lambda(0)} = \frac{1}{2^0} = 1.
+			\]
+			
+			Per \(x \geq 1\):
+			\[
+			\frac{1}{\lambda(x)} = \frac{1}{3 \cdot 2^x}.
+			\]
+			
+			La sommatoria diventa:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}.
+			\]
+			
+			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}\):
+			\[
+			\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x} = \frac{1}{3} \sum_{x=1}^\infty \frac{1}{2^x}.
+			\]
+			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
+			\[
+			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
+			\]
+			Abbiamo in conclusione che la serie diventa\\
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}=1+\frac{1}{3}=\frac{4}{3}
+			\]
+			Quindi la catena è esplosiva.
+			\item Ripetiamo gli stessi passaggi del punto precedente\\
+			\[
+			\lambda(x) =
+			\begin{cases} 
+				q(x, x+1) = 2^x, & \text{se } x = 0, \\ 
+				q(x, x+1) + q(x, x-1) = 2^x + 2^{x} = 2 \cdot 2^x, & \text{se } x \geq 1.
+			\end{cases}
+			\]
+			La sommatoria da verificare è:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
+			\]
+			
+			Per \(x = 0\):
+			\[
+			\frac{1}{\lambda(0)} = \frac{1}{2^0} = 1.
+			\]
+			
+			Per \(x \geq 1\):
+			\[
+			\frac{1}{\lambda(x)} = \frac{1}{2 \cdot 2^x}.
+			\]
+			
+			La sommatoria diventa:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}.
+			\]
+			
+			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}\):
+			\[
+			\sum_{x=1}^\infty \frac{1}{2 \cdot 2^x} = \frac{1}{2} \sum_{x=1}^\infty \frac{1}{2^x}.
+			\]
+			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
+			\[
+			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
+			\]
+			Abbiamo in conclusione che la serie diventa\\
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}=1+\frac{1}{2}=\frac{3}{2}
+			\]
+			Quindi la catena è esplosiva.
+			\item Ripetiamo gli stessi passaggi del punto precedente\\
+			\[
+			\lambda(x) =
+			\begin{cases} 
+				q(x, x+1) = 2^{x+1}, & \text{se } x = 0, \\ 
+				q(x, x+1) + q(x, x-1) = 2^x + 2^{x+1} = 3 \cdot 2^x, & \text{se } x \geq 1.
+			\end{cases}
+			\]
+			La sommatoria da verificare è:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
+			\]
+			
+			Per \(x = 0\):
+			\[
+			\frac{1}{\lambda(0)} = \frac{1}{2^{0+1}} = \frac{1}{2}.
+			\]
+			
+			Per \(x \geq 1\):
+			\[
+			\frac{1}{\lambda(x)} = \frac{1}{3 \cdot 2^x}.
+			\]
+			
+			La sommatoria diventa:
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = \frac{1}{2} + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}.
+			\]
+			
+			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}\):
+			\[
+			\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x} = \frac{1}{3} \sum_{x=1}^\infty \frac{1}{2^x}.
+			\]
+			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
+			\[
+			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
+			\]
+			Abbiamo in conclusione che la serie diventa\\
+			\[
+			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = \frac{1}{2} + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}=\frac{1}{2}+\frac{1}{3}=\frac{5}{6}
+			\]
+			Quindi la catena è esplosiva.
+		\end{enumerate}
+		\item \textbf{Esercizio 2: }
+		\begin{enumerate}[label=\alph*)]
+			\item Modelliamo come una CTMC, consideriamo un sistema con 6 stati ($n=0,1,2,3,4,5$) che rappresentano il numero di cartucce disponibili. Il tasso di transizione dipende dal numero di stampanti operative e dal numero di cartucce in ricarica:\\
+			\begin{itemize}
+				\item $q(n,n+1)=min(5-n,2) \cdot 1$\\ avviene quando una cartuccia viene ricaricata. 
+				\item $q(n,n-1)=min(n,3) \cdot \frac{1}{6}$\\ avviene quando una stampante consuma una cartuccia, con tasso proporzionale al numero di stampanti operative.
+			\end{itemize}
+			Successivamente procedo a calcolare la matrice di transizione $Q$\\
+			\[
+			\mathbf{Q} =
+			\begin{pmatrix}
+				-2 & 2 & 0 & 0 & 0 & 0 \\
+				\frac{1}{6} & \frac{-13}{6} & 2 & 0 & 0 & 0 \\
+				0 & \frac{1}{3} & \frac{-7}{3} & 2 & 0 & 0 \\
+				0 & 0 & \frac{1}{2} & \frac{-5}{2} & 2 & 0 \\
+				0 & 0 & 0 & \frac{1}{2} & \frac{-3}{2} & 1 \\
+				0 & 0 & 0 & 0 & \frac{1}{2} & \frac{-1}{2}
+				
+			\end{pmatrix}
+			\]
+			Ora possiamo calcolare la distribuzione invariante $\pi$ tali che 
+			\[
+			\pi Q=0
+			\]
+			e otteniamo\\
+			\[
+			\pi=(\frac{1}{3829},\frac{12}{3829},\frac{72}{3829},\frac{288}{3829},\frac{1152}{3829},\frac{2304}{3829})
+			\]
+			Possiamo affermare che tutte e 3 le stampanti lavoreranno assieme se $n\geq 3$ quindi:\\
+			\[
+			\frac{288}{3829} +\frac{1152}{3829}+\frac{2304}{3829}=\frac{3744}{3829}
+			\]
+			\item 
+		\end{enumerate}
+		\item \textbf{Esercizio 3: }
+		\item \textbf{Esercizio 4: }
+		\item \textbf{Esercizio 5: }
+	\end{itemize}
+\end{document}
