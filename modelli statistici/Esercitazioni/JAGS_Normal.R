@@ -23,15 +23,8 @@ y <- rnorm(500, mu.true, var.true)
 
 model <- "
      model{
-<<<<<<< HEAD
-     # distribuzioni a priori
          prec ~ dgamma(0.5,0.5)
          mean ~ dnorm(0,1/100000)
-         # aggiormaento
-=======
-         prec ~ dgamma(0.5,0.5)
-         mean ~ dnorm(0,1/100000)
->>>>>>> 2a563d2d98bea579ffbb05755dbf02c76fc17ec3
          for(i in 1:n.sim){
             y[i] ~ dnorm(mean, prec)
          }

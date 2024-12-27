@@ -1,7 +1,7 @@
 import gurobipy as gp
 from gurobipy import GRB
 
-cost = 9
+cost = 1
 selling_price = 10 
 pi = [0.4, 0.3, 0.2, 0.1]
 vals = [0,1,2,3]

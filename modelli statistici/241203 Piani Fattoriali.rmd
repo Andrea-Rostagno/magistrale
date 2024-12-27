@@ -1,0 +1,205 @@
+---
+title: 'Piani fattoriali in R'
+author: "Mauro Gasparini"
+date: "3 Dicembre 2024"
+output: pdf_document
+pdf_print: paged
+---
+
+# Riferimento bibliografico
+
+I seguenti esempi sono tratti da   
+
+McClave JT., Benson PG. e Sincich T. (2014).   
+Statistics for Business and Economics.   
+Pearson Education Limited.     
+
+
+# Anova a una via
+
+Si vogliono studiare dapprima gli effetti di 4 tipi diversi (A,B,C,D)
+di palla da golf sulla variabile risposta, cioé la distanza ottenuta
+con un tiro standard, cioé un tiro fatto da un robot
+(ANOVA a un fattore, o a una via).
+Se si assume che i tipi di palla vengano affidati ai tiri in maniera 
+casuale, questo piano sperimentale \`e  chiamato **piano (ad un fattore)
+completamente randomizzato**.
+
+Prima ripuliamo il nostro ambiente da possibili variabili con lo stesso nome
+
+```{r}
+ rm(list=ls())
+```
+
+Leggiamo i dati direttamente da linea.
+
+```{r}
+ golf1 <- read.table(header=T, text='
+tipo distanza
+   A    226.4
+   A    232.6
+   A    234.0
+   A    220.7
+   A    163.8
+   A    179.4
+   A    168.6
+   A    173.4
+   B    238.3
+   B    231.7
+   B    227.7
+   B    237.2
+   B    184.4
+   B    180.6
+   B    179.5
+   B    186.2
+   C    240.5
+   C    246.9
+   C    240.3
+   C    244.7
+   C    179.0
+   C    168.0
+   C    165.2
+   C    156.5
+   D    219.8
+   D    228.7
+   D    232.9
+   D    237.6
+   D    157.8
+   D    161.8
+   D    162.1
+   D    160.3
+')
+attach(golf1) 
+summary(golf_lm <- lm(distanza ~ tipo))      ### con lm()
+summary(golf_oneway <- aov(distanza ~ tipo))  ### con aov()
+
+# questi due oggetti diversi danno informazioni diverse, quali?
+boxplot(distanza ~ tipo) 
+plot.design(distanza ~ as.factor(tipo))
+
+# gli intervalli di Tukey sono dei particolari metodi di inferenza multipla
+TukeyHSD(golf_oneway)
+plot(TukeyHSD(golf_oneway))
+
+detach(golf1)
+```
+
+# ANOVA a due vie in un piano fattoriale completo
+
+In un secondo momento, si aggiunge il fattore mazza nei due livelli
+forniti da due mazze diverse (DRIVER e IRON). In questo piano sperimentale
+La combinazione tipo/mazza viene usata dal robot con 4 repliche per ciascuna combinazione, quindi il piano viene detto **piano fattoriale completo 
+a due fattori** (o anche ANOVA a due fattori, o a due vie).
+
+I dati in formato largo sono 
+
+```{r}
+golf2wide <- read.table(header=T, text='
+mazza  A       B       C       D
+DRIVER 	226.4	238.3	240.5	219.8
+DRIVER 	232.6	231.7	246.9	228.7
+DRIVER 	234	227.7	240.3	232.9
+DRIVER	220.7	237.2	244.7	237.6
+IRON   	163.8	184.4	179	157.8
+IRON   	179.4	180.6	168	161.8
+IRON   	168.6	179.5	165.2	162.1
+IRON   	173.4	186.2	156.5	160.3
+')
+```
+
+E' preferibile un formato lungo (long) che si può ottenere 
+in R con il pacchetto tidyr e l'istruzione gather()
+(ci sono altre possibilità, vedi laboratorio).
+ 
+```{r}
+#install.packages("tidyr")
+library(tidyr)
+golf2 <- gather(golf2wide, tipo, distanza, A:D) 
+golf2
+```
+
+Ora facciamo una analisi ANOVA a due vie, perché abbiamo due fattori
+bilanciati.
+
+```{r}
+# Controlliamo che il piano sperimentale sia bilanciato:
+attach(golf2)   
+table(mazza, tipo)
+#mazza <- as.factor(mazza)
+#tipo <- as.factor(tipo)
+# Una prima sommaria indagine:
+plot.design(distanza ~ as.factor(mazza)*as.factor(tipo))
+# Disegnamo gli interaction plot:
+interaction.plot(tipo, mazza, distanza)
+
+#Otteniamo la tabella ANOVA completa con i tre test:
+model1 <- aov(distanza ~ mazza*tipo)
+anova(model1)
+
+#Vediamo invece cosa ci dà il modello lineare:
+
+summary(model2 <- lm(distanza ~ mazza*tipo))
+anova(model2)
+
+detach(golf2)
+```
+
+
+# ANOVA a due vie in un piano fattoriale a blocchi randomizzati
+
+A 10 giocatori di golf (GOLFER) vengono assegnate 10 sequenze casuali 
+delle 4 marche di palle da golf (A,B,C,D). 
+Viene poi misurata la distanza ottenuta da essi con un tiro
+standard sulle diverse palle. I dati in formato largo
+vengono trasformati in formato lungo.
+
+```{r}
+golf3wide <- read.table(header=T, text='
+GOLFER      A       B       C       D       
+1       202.4   203.2   223.7   203.6 
+2       242     248.7   259.8   240.7 
+3       220.4   227.3   240     207.4 
+4       230     243.1   247.7   226.9 
+5       191.6   211.4   218.7   200.1 
+6       247.7   253     268.1   244 
+7       214.8   214.8   233.9   195.8 
+8       245.4   243.6   257.8   227.9 
+9       224     231.5   238.2   215.7 
+10      252.2   255.2   265.4   245.2
+')
+golf3 <- gather(golf3wide, tipo, distanza, A:D) 
+golf3
+
+```
+
+Tale piano sperimentale \`e  chiamato **piano a blocchi randomizzati**,
+in quanto ogni GOLFER fa da blocco di osservazioni omogenee di
+cui tenere conto, mentre il vero fattore di interesse è il tipo di palla.
+
+Costruiamo un modello appropriato golfers.aov 
+(senza interazione: perché?) e otteniamo la tabella ANOVA,
+da cui concludiamo che i GOLFER differiscono tra loro,
+come del resto anche i tipi di palla.
+
+```{r}
+attach(golf3)
+
+summary(golfers.aov <- aov(distanza ~ as.factor(GOLFER) +  as.factor(tipo)))
+
+detach(golf3)
+
+```
+
+Ecco il risultato
+```
+                  Df Sum Sq Mean Sq F value   Pr(>F)    
+as.factor(GOLFER)  9  12074  1341.5   66.27 4.50e-16 ***
+tipo               3   3299  1099.6   54.31 1.45e-11 ***
+Residuals         27    547    20.2                   
+```
+
+Per ottenere gli intervalli di Tukey per tutte le differenze tra tipi (non GOLFER), digitare
+
+```{r}
+plot(TukeyHSD(golfers.aov,2))
+```

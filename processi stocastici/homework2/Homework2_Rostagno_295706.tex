@@ -149,6 +149,7 @@
 			\]
 			Quindi la catena è esplosiva.
 		\end{enumerate}
+		\newpage
 		\item \textbf{Esercizio 2: }
 		\begin{enumerate}[label=\alph*)]
 			\item Modelliamo come una CTMC, consideriamo un sistema con 6 stati ($n=0,1,2,3,4,5$) che rappresentano il numero di cartucce disponibili. Il tasso di transizione dipende dal numero di stampanti operative e dal numero di cartucce in ricarica:\\
@@ -181,10 +182,149 @@
 			\[
 			\frac{288}{3829} +\frac{1152}{3829}+\frac{2304}{3829}=\frac{3744}{3829}
 			\]
-			\item 
+			\item Iniziamo a calcolare il numero medio di stampanti operative giornaliero\\
+			\[\text{Media stamp. operative}=\sum_{n=0}^{5}\text{(stamp. operative nello stato n)}\cdot\pi(n)
+			\]
+			Esplicitiamo la formula\\
+			\[
+			 \pi(0) \cdot 0 + \pi(1) \cdot 1 + \pi(2) \cdot 2 + \pi(3) \cdot 3 + \pi(4) \cdot 3 + \pi(5) \cdot 3
+			\]
+			Sostituendo i vari valori otteniamo\\
+			\[
+			0+\frac{12}{3829}+\frac{144}{3829}+\frac{864}{3829}+\frac{3456}{3829}+\frac{6912}{3829}=\frac{11388}{3829}
+			\]
+			Ora sappiamo che vengono stampate 1000 pagine al giorno per ogni stampante funzionante e ci interessa sapere all'anno quante ne vengono stampate, quindi\\
+			\[
+			\frac{11388}{3829}\cdot1000\cdot365=\frac{4156620000}{3829}=1.085.562 \text{pagine}
+			\]
 		\end{enumerate}
+		\newpage
 		\item \textbf{Esercizio 3: }
+		\begin{enumerate} [label=\alph*)]
+			\item Iniziamo con il definire i valori di $\lambda_1$ e $\lambda_2$ in modo da definire la traffic equation\\
+			\[
+			\lambda_1 = \lambda 
+			\]
+			\[
+			\lambda_2=\lambda + (1-p)\lambda_2=\frac{\lambda}{p}
+			\]
+			Siccome ci troviamo in code del tipo (M/M/1), la condizione per cui siano positivamente ricorrenti è $\lambda < \mu$, nel nostro caso\\
+			\[
+			\lambda < \mu_1
+			\]
+			\[
+			\lambda < p\mu_2
+			\]
+			Supponiamo di essere sotto tali condizioni, la distribuzione stazionaria sarà $\pi(n_1,n_2)=\pi_1(n_1)\pi_2(n_2)$, nello specifico\\
+			\[
+			\pi_1(n_1) = \left( 1 - \frac{\lambda}{\mu_1} \right) \left( \frac{\lambda}{\mu_1} \right)^{n_1}
+			\]
+			\[
+			\pi_1(n_2) = \left( 1 - \frac{\lambda}{p\mu_2} \right) \left( \frac{\lambda}{p\mu_2} \right)^{n_2}
+			\]
+			\item In due ore, il numero di oggetti che passano l'ispezione segue un processo di Poisson con tasso:\\
+			\[\lambda_{pass}=2 \cdot \lambda \cdot p
+			\]
+			Dobbiamo calcolare la probabilità che meno di 3 oggetti passino:\\
+			\[
+			P(\text{meno di 3 passano})=P(X<3)
+			\]
+			Usiamo la formula della distribuzione di Poisson:
+			\[
+			P(X < 3) = P(X = 0) + P(X = 1) + P(X = 2)
+			\]
+			\[
+			P(X < 3) = e^{-\lambda_{\text{pass}}} \left( 1 + \lambda_{\text{pass}} + \frac{\lambda_{\text{pass}}^2}{2} \right).
+			\]
+			
+			\item Iniziamo a calcolare il tasso effettivo di arrivo al centro macchine, ovvero:\\
+			\[\lambda_{eff}=\lambda +(1-p)\frac{\lambda}{p}=\frac{\lambda}{p}
+			\]
+			Adesso posso calcolare il numero medio di pezzi al centro macchine\\
+			\[
+			\mathbb{E}[N_{\text{macchine}}] = \frac{\lambda_{\text{eff}}}{\mu_1 - \lambda_{\text{eff}}}.
+			\]
+			
+		\end{enumerate}
+		\newpage
 		\item \textbf{Esercizio 4: }
+		\begin{enumerate} [label=\alph*)]
+			\item Nell'urna ci sono $n \geq 2$ palline, alcune bianche (W) e alcune nere (B). Definiamo il numero totale di palline $n=W+B$ ricordando che rimane costante. Il gioco modifica il numero di palline bianche o nere ma mantiene inalterata la somma.\\
+			Definiamo una funzione di variabilità come il prodotto
+			\[ V= W \cdot B\]
+			Questa quantità rappresenta il prodotto tra il numero di palline bianche e nere.
+			\begin{itemize}
+				\item \text{Caso 1:} Se vengono estratte due palline dello stesso colore, $W$ e $B$ rimangono invariati, quindi anche $V$ non cambia.
+				\item \text{Caso 2:} Se vengono estratte due palline di colori diversi:
+				\begin{itemize}
+					\item $W$ aumenta di $1$ e $B$ diminuisce di $1$ (o viceversa) con uguale probabilità.
+					\item Questo modifica $V$ come segue:
+					$$
+					V_{\text{nuovo}} = (W + 1) \cdot (B - 1) = W \cdot B + (B - W - 1).
+					$$
+				\end{itemize}
+				Il cambiamento in $V$ è decrescente in media perché $B - W - 1$ è negativo quando $W$ e $B$ non sono bilanciati.
+			\end{itemize}
+			
+			Quindi, la funzione $V$ decresce stocasticamente ad ogni iterazione, tranne quando $W$ o $B$ sono già massimi (cioè $V = 0$).\\
+			\newline
+			Gli stati $W = 0$ (tutte le palline nere) e $B = 0$ (tutte le palline bianche) sono stati \textit{assorbenti}, poiché non possono più verificarsi cambiamenti nel sistema. In questi stati, $V = 0$.\\
+			\newline
+			La quantità $V$ è una supermartingales perché decresce stocasticamente ad ogni iterazione, come dimostrato sopra.\\
+			Per il teorema di convergenza delle closed martingales, un processo stocastico limitato e decrescente converge quasi sicuramente a un valore limite.\\
+			Essendo che abbiamo due possibili stati assorbenti, il sistema convergerà necessariamente a uno di essi. \\
+			Quindi possiamo affermare che alla fine del processo avremo le palline tutte dello stesso colore.
+			
+			\item La probabilità che tutte le palline diventino bianche $P(W=n)$ è proporzionale alla quantità iniziale di palline bianche rispetto al totale:
+			\[P(W=n)=\frac{W_0}{W_0+B_0}=\frac{10}{10 + 20}=\frac{1}{3}\]
+			\item Possiamo ricalcolare 
+			$P(W = n \mid W_{\sigma} = 12)$ come se $W_{\sigma} = 12$ fosse il nuovo stato iniziale, con $n = 30$.\\
+			\[P(W=n \mid W_\sigma =12)=\frac{W_\sigma}{W_\sigma+B_\sigma}=\frac{12}{12 + 18}=\frac{2}{5}\]
+			
+			
+		\end{enumerate}
+		\newpage
 		\item \textbf{Esercizio 5: }
+		
+		L'equazione data è:
+		\[
+		\mathbb{E}[f(X_{n+1}) - f(X_n) \mid X_n] = \mathbb{E}[g(X_{n+1}) - g(X_n) \mid X_n].
+		\]
+		\text{Applichiamo la propietà della linearità:}
+		\[
+		\mathbb{E}[f(X_{n+1}) \mid X_n] - \mathbb{E}[f(X_n) \mid X_n]  = \mathbb{E}[g(X_{n+1}) \mid X_n] - \mathbb{E}[g(X_n) \mid X_n] .
+		\]
+		Semplifichiamo:
+		\[
+		\mathbb{E}[f(X_{n+1}) \mid X_n] - f(X_n) = \mathbb{E}[g(X_{n+1}) \mid X_n] - g(X_n).
+		\]
+		\text{Spostando i termini, otteniamo:}
+		\[
+		\mathbb{E}[f(X_{n+1}) \mid X_n] - \mathbb{E}[g(X_{n+1}) \mid X_n] = f(X_n) - g(X_n).
+		\]
+		\text{Definiamo:}
+		\[
+		h(X_n) = f(X_n) - g(X_n).
+		\]
+		\text{Quindi, l'equazione diventa:}
+		\[
+		\mathbb{E}[h(X_{n+1}) \mid X_n] = h(X_n).
+		\]
+		Questa equazione implica che $\left(h(X_n)\right)_{n=0}^\infty$ è un martingales rispetto alla filtrazione generata da $(X_n)$ in quanto ci troviamo in un DTMC ricorrente. Questo implica che il valore medio condizionato di $h(X_n)$ rimane costante.\\
+		Dato che $(X_n)$ è ricorrente, possiamo concludere che $h(X_n)$ deve essere costante su $S$. Pertanto:
+		$$
+		h(x) = f(x) - g(x) = C,
+		$$
+		dove $C$ è una costante indipendente da $x$.\\
+		Poiché $f(x) \geq g(x)$ per ogni $x \in S$, abbiamo:
+		$$
+		C = f(x) - g(x) \geq 0.
+		$$
+		Abbiamo dimostrato che:
+		\[
+		f(x)=g(x)+C
+		\]
+	
+		
 	\end{itemize}
 \end{document}

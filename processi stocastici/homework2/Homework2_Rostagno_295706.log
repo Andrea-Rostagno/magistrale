@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.10.25)  10 DEC 2024 19:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  13 DEC 2024 17:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./Homework2_Rostagno_295706.tex
 (Homework2_Rostagno_295706.tex
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-09-10>
+L3 programming layer <2024-05-27>
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
@@ -155,35 +155,35 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 \lst@maxwidth=\dimen157
 
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
-File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
-File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
 \c@lstnumber=\count288
 \lst@skipnumbers=\count289
 \lst@framebox=\box56
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
-File: listings.cfg 2024/09/23 1.10c listings configuration
+File: listings.cfg 2024/05/25 1.10b listings configuration
 ))
-Package: listings 2024/09/23 1.10c (Carsten Heinz)
+Package: listings 2024/05/25 1.10b (Carsten Heinz)
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
-Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
-Package xcolor Info: Model `RGB' extended on input line 1365.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
@@ -306,43 +306,137 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--147
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--156
-
- []
-
-
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
+Underfull \hbox (badness 10000) in paragraph at lines 155--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--177
+Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--181
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+
+Overfull \hbox (14.02933pt too wide) detected at line 187
+[] \OT1/cmr/m/n/12 = [] [] \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^Y\OT1/cmr/m/
+n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
 
 
-[4] (Homework2_Rostagno_295706.aux)
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
+
+ []
+
+
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--212
+
+ []
+
+
+Overfull \hbox (17.32906pt too wide) in paragraph at lines 217--219
+\OT1/cmr/m/n/12 Supponiamo di es-sere sotto tali con-dizioni, la dis-tribuzione
+ stazionaria
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--219
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--226
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--244
+
+ []
+
+
+
+[6]
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 269--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--277
+
+ []
+
+
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 280--282
+
+ []
+
+
+
+[9]
+
+[10] (Homework2_Rostagno_295706.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-09-10>
+L3 programming layer <2024-05-27>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4791 strings out of 473898
- 71398 string characters out of 5726478
- 471993 words of memory out of 5000000
- 27637 multiletter control sequences out of 15000+600000
- 567184 words of font info for 71 fonts, out of 8000000 for 9000
+ 4795 strings out of 473904
+ 71465 string characters out of 5726601
+ 1939908 words of memory out of 5000000
+ 27634 multiletter control sequences out of 15000+600000
+ 567531 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,9n,65p,300b,420s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,9n,65p,304b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -351,13 +445,16 @@ ype1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/andre/AppData/Local/Progra
 ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/and
-re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
-Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb>
-Output written on Homework2_Rostagno_295706.pdf (4 pages, 109124 bytes).
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/and
+re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Us
+ers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmti12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/symbols/msbm10.pfb>
+Output written on Homework2_Rostagno_295706.pdf (10 pages, 154303 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 101 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
