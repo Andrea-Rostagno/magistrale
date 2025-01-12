@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  10 JAN 2025 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  11 JAN 2025 11:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./Homework2_Rostagno_295706.tex
-(Homework2_Rostagno_295706.tex
+**./Homework2_295706_Rostagno_File2.tex
+(Homework2_295706_Rostagno_File2.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -120,48 +120,28 @@ LaTeX Info: Redefining \Relbar on input line 970.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-(C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
-Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip54
-\enit@outerparindent=\dimen153
-\enit@toks=\toks25
-\enit@inbox=\box54
-\enit@count@id=\count280
-\enitdp@description=\count281
-)
-(C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)
-(C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-)
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count282
-\lst@gtempboxa=\box55
-\lst@token=\toks26
-\lst@length=\count283
-\lst@currlwidth=\dimen154
-\lst@column=\count284
-\lst@pos=\count285
-\lst@lostspace=\dimen155
-\lst@width=\dimen156
-\lst@newlines=\count286
-\lst@lineno=\count287
-\lst@maxwidth=\dimen157
+\lst@mode=\count280
+\lst@gtempboxa=\box54
+\lst@token=\toks25
+\lst@length=\count281
+\lst@currlwidth=\dimen153
+\lst@column=\count282
+\lst@pos=\count283
+\lst@lostspace=\dimen154
+\lst@width=\dimen155
+\lst@newlines=\count284
+\lst@lineno=\count285
+\lst@maxwidth=\dimen156
 
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count288
-\lst@skipnumbers=\count289
-\lst@framebox=\box56
+\c@lstnumber=\count286
+\lst@skipnumbers=\count287
+\lst@framebox=\box55
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2024/05/25 1.10b listings configuration
@@ -188,40 +168,56 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count290
-\l__pdf_internal_box=\box57
-) (Homework2_Rostagno_295706.aux)
-\openout1 = `Homework2_Rostagno_295706.aux'.
+\l__color_backend_stack_int=\count288
+\l__pdf_internal_box=\box56
+) (Homework2_295706_Rostagno_File2.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Warning: Label `fig:immagine' multiply defined.
+
+
+LaTeX Warning: Label `fig:immagine' multiply defined.
+
+
+LaTeX Warning: Label `fig:immagine' multiply defined.
+
+
+LaTeX Warning: Label `fig:immagine' multiply defined.
+
+
+LaTeX Warning: Label `fig:immagine' multiply defined.
+
+)
+\openout1 = `Homework2_295706_Rostagno_File2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
 
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen158
-\scratchbox=\box58
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen159
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count289
+\scratchdimen=\dimen157
+\scratchbox=\box57
+\nofMPsegments=\count290
+\nofMParguments=\count291
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count292
+\MPscratchDim=\dimen158
+\MPnumerator=\count293
+\makeMPintoPDFobject=\count294
+\everyMPtoPDFconversion=\toks27
 )
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -233,233 +229,148 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count297
-LaTeX Font Info:    Trying to load font information for U+msa on input line 18.
-
- (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
-
-
-(C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 26--29
-
- []
-
-
-Overfull \hbox (2.28844pt too wide) detected at line 35
-\OML/cmm/m/it/12 ^^U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 59--61
-
- []
-
+\c@lstlisting=\count295
+<punti.png, id=1, 800.9925pt x 573.64313pt>
+File: punti.png Graphic file (type png)
+<use punti.png>
+Package pdftex.def Info: punti.png  used on input line 20.
+(pdftex.def)             Requested size: 312.00119pt x 223.44856pt.
 
 
 [1
 
-{C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
-
- []
+{C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./punti.png>
+]
+<colore.png, id=12, 800.9925pt x 573.64313pt>
+File: colore.png Graphic file (type png)
+<use colore.png>
+Package pdftex.def Info: colore.png  used on input line 38.
+(pdftex.def)             Requested size: 312.00119pt x 223.44856pt.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
-
- []
-
-
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-
-Overfull \hbox (2.28844pt too wide) detected at line 117
-\OML/cmm/m/it/12 ^^U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 141--143
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
-
- []
-
-
+[2 <./colore.png>]
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 155--157
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--182
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
-
- []
-
-
-Overfull \hbox (14.02933pt too wide) detected at line 187
-[] \OT1/cmr/m/n/12 = [] [] \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^Y\OT1/cmr/m/
-n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
-
+Overfull \hbox (45.97716pt too wide) detected at line 128
+\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^L[] \OMS/cmsy/m/n/12 j \O
+ML/cmm/m/it/12 ^^L[]; \OT1/cmr/bx/n/12 w[]\OML/cmm/m/it/12 ; ^^^\OT1/cmr/m/n/12
+ ) \OMS/cmsy/m/n/12 / [] []
  []
 
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 195--197
-
- []
-
-
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
-
- []
-
-
-Overfull \hbox (17.32906pt too wide) in paragraph at lines 217--219
-\OT1/cmr/m/n/12 Supponiamo di es-sere sotto tali con-dizioni, la dis-tribuzione
- stazionaria
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--219
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 227--229
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 242--244
-
- []
-
-
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 246--249
-
+Overfull \hbox (3.18143pt too wide) in paragraph at lines 238--239
+\OT1/cmr/m/n/12 Dove mean$[]$alpha ^^Se la me-dia dei 50 co-ef-fi-centi al-pha 
+di ac-cettazione. 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 275--283
-
+Overfull \hbox (62.26009pt too wide) detected at line 292
+[] \OT1/cmr/m/n/12 = [] [] \OML/cmm/m/it/12 :
  []
 
+<mcmc1.png, id=39, 800.9925pt x 573.64313pt>
+File: mcmc1.png Graphic file (type png)
+<use mcmc1.png>
+Package pdftex.def Info: mcmc1.png  used on input line 310.
+(pdftex.def)             Requested size: 312.00119pt x 223.44856pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--283
-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 286--288
+<scatter_oss_pois.png, id=43, 800.9925pt x 575.90157pt>
+File: scatter_oss_pois.png Graphic file (type png)
+<use scatter_oss_pois.png>
+Package pdftex.def Info: scatter_oss_pois.png  used on input line 324.
+(pdftex.def)             Requested size: 272.99881pt x 196.28725pt.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[9 <./mcmc1.png>]
+<isto.png, id=48, 800.9925pt x 575.14874pt>
+File: isto.png Graphic file (type png)
+<use isto.png>
+Package pdftex.def Info: isto.png  used on input line 332.
+(pdftex.def)             Requested size: 234.00238pt x 168.0175pt.
+
+
+[10 <./scatter_oss_pois.png> <./isto.png>]
+Overfull \hbox (20.91934pt too wide) in paragraph at lines 343--343
+\OT1/cmr/m/n/12 con-tenere i val-ori dei vari parametri du-rante le varie it-er
+-azioni dell'algoritmo
  []
 
 
 
-[9]
+[11]
 
-[10] (Homework2_Rostagno_295706.aux)
+[12]
+<plotfinali2.png, id=62, 800.9925pt x 573.64313pt>
+File: plotfinali2.png Graphic file (type png)
+<use plotfinali2.png>
+Package pdftex.def Info: plotfinali2.png  used on input line 441.
+(pdftex.def)             Requested size: 429.00238pt x 307.24179pt.
+
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 441--442
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[13]
+
+[14 <./plotfinali2.png>] (Homework2_295706_Rostagno_File2.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 4795 strings out of 473904
- 71465 string characters out of 5726601
- 1939908 words of memory out of 5000000
- 27634 multiletter control sequences out of 15000+600000
- 567531 words of font info for 72 fonts, out of 8000000 for 9000
+ 3976 strings out of 473904
+ 60361 string characters out of 5726601
+ 1936908 words of memory out of 5000000
+ 26837 multiletter control sequences out of 15000+600000
+ 564714 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,9n,65p,304b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,9n,65p,362b,336s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/andre/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/and
-re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Us
-ers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmti12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/symbols/msbm10.pfb>
-Output written on Homework2_Rostagno_295706.pdf (10 pages, 154892 bytes).
+ype1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/andre/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/P
+rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/andre/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Use
+rs/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb>
+<C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmsy6.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Homework2_295706_Rostagno_File2.pdf (14 pages, 251761 bytes).
+
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
+ 126 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
