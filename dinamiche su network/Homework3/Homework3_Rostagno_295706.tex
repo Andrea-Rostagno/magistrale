@@ -162,6 +162,59 @@
 		
 		\item \textbf{Punto i: }
 		Svolto algoritmo in python
+		\begin{verbatim}
+			import numpy as np
+			
+			W = np.array([[0,1,1,1,1,0,0,0,0,0,0],[1,0,1,1,1,0,0,0,0,0,0],[1,1,0,1,1,0,0,0,0,0,0],
+			[1,1,1,0,1,1,0,0,0,0,0],[1,1,1,1,0,1,0,0,0,0,0],[0,0,0,1,1,0,1,1,0,0,0],
+			[0,0,0,0,0,1,0,1,1,1,1],[0,0,0,0,0,1,1,0,1,1,1],[0,0,0,0,0,0,1,1,0,1,1],
+			[0,0,0,0,0,0,1,1,1,0,1],[0,0,0,0,0,0,1,1,1,1,0]])
+			
+			# Valori di beta
+			beta_values = [0.1, 0.2]
+			
+			# Identità di dimensione uguale a W
+			I = np.eye(W.shape[0])
+			
+			# Risultati
+			results = {}
+			
+			for beta in beta_values:
+			# Calcolo della matrice M
+			M = np.linalg.inv(I - beta * W)
+			
+			# Calcolo di z_i e M_ii
+			z = M.sum(axis=0)  # Somma delle colonne
+			M_diag = np.diag(M)  # Elementi diagonali
+			
+			# Calcolo del rapporto z_i^2 / M_ii
+			ratios = z**2 / M_diag
+			
+			# Nodo chiave
+			tol=0.0001
+			rmax=ratios.max()
+			key_player = np.where(np.isclose(ratios, rmax, atol=tol))[0] + 1
+			
+			
+			# Salvataggio dei risultati
+			results[beta] = {
+				"M": M,
+				"z": z,
+				"rmax": rmax,
+				"M_diag": M_diag,
+				"ratios": ratios,
+				"key_player": key_player   
+			}
+			
+			# Stampa risultati
+			for beta, result in results.items():
+			print(f"\nBeta = {beta}")
+			#print("z (Somma colonne):", result["z"])
+			#print("M_diag (Diagonale):", result["M_diag"])
+			#print("Ratios (z_i^2 / M_ii):", result["ratios"])
+			print("Key Player :", result["key_player"])
+			#print("rmax :", result["rmax"])
+		\end{verbatim}
 	\end{itemize}
 	\centering \textbf{Esercizio 2}\\
 	\begin{itemize}

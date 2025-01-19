@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  10 JAN 2025 10:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  15 JAN 2025 19:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -245,17 +245,22 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
 (C:\Users\andre\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 26--29
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
 
-Overfull \hbox (2.28844pt too wide) detected at line 35
-\OML/cmm/m/it/12 ^^U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = []
+Underfull \hbox (badness 10000) in paragraph at lines 37--38
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--61
+Underfull \hbox (badness 10000) in paragraph at lines 43--46
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
@@ -264,7 +269,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--61
 [1
 
 {C:/Users/andre/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 64--66
 
  []
 
@@ -274,192 +281,147 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--70
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
+
+Overfull \hbox (14.02933pt too wide) detected at line 96
+[] \OT1/cmr/m/n/12 = [] [] \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^Y\OT1/cmr/m/
+n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--98
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 100--102
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
-
- []
-
-
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-
-Overfull \hbox (2.28844pt too wide) detected at line 117
-\OML/cmm/m/it/12 ^^U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ) = []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 141--143
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--147
 
  []
 
 
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 155--157
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--182
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
-
- []
-
-
-Overfull \hbox (14.02933pt too wide) detected at line 187
-[] \OT1/cmr/m/n/12 = [] [] \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^Y\OT1/cmr/m/
-n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 187--189
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
+Underfull \hbox (badness 10000) in paragraph at lines 104--106
 
  []
 
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 195--197
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--121
+
+ []
+
+
+Overfull \hbox (17.32906pt too wide) in paragraph at lines 126--128
+\OT1/cmr/m/n/12 Supponiamo di es-sere sotto tali con-dizioni, la dis-tribuzione
+ stazionaria
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--138
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
 
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
-
- []
-
-
-Overfull \hbox (17.32906pt too wide) in paragraph at lines 217--219
-\OT1/cmr/m/n/12 Supponiamo di es-sere sotto tali con-dizioni, la dis-tribuzione
- stazionaria
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--219
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 227--229
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 242--244
+Underfull \hbox (badness 10000) in paragraph at lines 155--158
 
  []
 
 
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 246--249
+Underfull \hbox (badness 10000) in paragraph at lines 184--192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--192
 
  []
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 275--283
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 275--283
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
 
  []
 
 
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 286--288
 
- []
-
-
-
-[9]
-
-[10] (Homework2_Rostagno_295706.aux)
+[9] (Homework2_Rostagno_295706.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4795 strings out of 473904
- 71465 string characters out of 5726601
+ 4794 strings out of 473904
+ 71419 string characters out of 5726601
  1939908 words of memory out of 5000000
- 27634 multiletter control sequences out of 15000+600000
+ 27633 multiletter control sequences out of 15000+600000
  567531 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,9n,65p,304b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,7n,65p,304b,450s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmex10.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/t
 ype1/public/amsfonts/cm/cmmi12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/andre/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/and
-re/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Us
-ers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
+X/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/andre/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/andre/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/andre/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/andr
+e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/U
+sers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmti12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/symbols/msbm10.pfb>
-Output written on Homework2_Rostagno_295706.pdf (10 pages, 154892 bytes).
+/cmti12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb>
+Output written on Homework2_Rostagno_295706.pdf (9 pages, 143619 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
+ 93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

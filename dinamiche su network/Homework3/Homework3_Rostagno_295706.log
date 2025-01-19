@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  3 JAN 2025 18:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.7.4)  14 JAN 2025 20:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -529,43 +529,71 @@ ibilit^^Ra della
 
 
 [3]
+Overfull \hbox (188.94997pt too wide) in paragraph at lines 168--168
+ []   \OT1/cmtt/m/n/12 W = np.array([[0,1,1,1,1,0,0,0,0,0,0],[1,0,1,1,1,0,0,0,0
+,0,0],[1,1,0,1,1,0,0,0,0,0,0],[] 
+ []
+
+
+Overfull \hbox (102.49992pt too wide) in paragraph at lines 169--169
+ []   \OT1/cmtt/m/n/12 [1,1,1,0,1,1,0,0,0,0,0],[1,1,1,1,0,1,0,0,0,0,0],[0,0,0,1
+,1,0,1,1,0,0,0],[] 
+ []
+
+
+Overfull \hbox (102.49992pt too wide) in paragraph at lines 170--170
+ []   \OT1/cmtt/m/n/12 [0,0,0,0,0,1,0,1,1,1,1],[0,0,0,0,0,1,1,0,1,1,1],[0,0,0,0
+,0,0,1,1,0,1,1],[] 
+ []
+
+
 
 [4]
+Overfull \hbox (53.0999pt too wide) in paragraph at lines 196--196
+ []   \OT1/cmtt/m/n/12 key_player = np.where(np.isclose(ratios, rmax, atol=tol)
+)[0] + 1[] 
+ []
+
+
 
 [5]
-<graf1.png, id=29, 881.694pt x 609.9588pt>
+
+[6]
+
+[7]
+<graf1.png, id=37, 881.694pt x 609.9588pt>
 File: graf1.png Graphic file (type png)
 <use graf1.png>
-Package pdftex.def Info: graf1.png  used on input line 217.
+Package pdftex.def Info: graf1.png  used on input line 270.
 (pdftex.def)             Requested size: 312.00119pt x 215.8435pt.
 
 
-[6 <./graf1.png>]
-<graf2.png, id=35, 881.694pt x 609.9588pt>
+[8 <./graf1.png>]
+<graf2.png, id=43, 881.694pt x 609.9588pt>
 File: graf2.png Graphic file (type png)
 <use graf2.png>
-Package pdftex.def Info: graf2.png  used on input line 233.
+Package pdftex.def Info: graf2.png  used on input line 286.
 (pdftex.def)             Requested size: 312.00119pt x 215.8435pt.
 
 
-[7 <./graf2.png>]
+[9 <./graf2.png>]
 
-[8]
+[10]
 
-[9] (Homework3_Rostagno_295706.aux)
+[11] (Homework3_Rostagno_295706.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13380 strings out of 473904
- 280487 string characters out of 5726601
+ 13385 strings out of 473904
+ 280577 string characters out of 5726601
  1937908 words of memory out of 5000000
- 36037 multiletter control sequences out of 15000+600000
- 564714 words of font info for 59 fonts, out of 8000000 for 9000
+ 36041 multiletter control sequences out of 15000+600000
+ 564883 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,93p,444b,349s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,9n,93p,444b,412s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\andre\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -578,10 +606,11 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/andr
 e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/U
 sers/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.p
 fb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy8.pfb>
-Output written on Homework3_Rostagno_295706.pdf (9 pages, 277511 bytes).
+/cmsy8.pfb><C:/Users/andre/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb>
+Output written on Homework3_Rostagno_295706.pdf (11 pages, 292788 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

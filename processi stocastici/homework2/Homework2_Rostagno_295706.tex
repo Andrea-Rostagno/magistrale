@@ -20,134 +20,43 @@
 	\begin{itemize}
 		\item \textbf{Esercizio 1: }
 		\begin{enumerate}[label=\alph*)]
-			\item Per determinare se la catena è esplosiva dobbiamo verificare che 
+			\item Per prima cosa dobbiamo calcolare i rate della embedded DTMC:\\
 			\[
-			\sum_{n=0}^\infty \frac{1}{\lambda_n} < \infty
+			r(x,x+1)=\frac{2^x}{3 \cdot 2^x}=\frac{1}{3}
 			\]
-			dove $\lambda_n(x)=q(x,x+1) + q(x,x-1)$.\\
-			Nel nostro caso abbiamo:\\
 			\[
-			\lambda(x) =
-			\begin{cases} 
-				q(x, x+1) = 2^x, & \text{se } x = 0, \\ 
-				q(x, x+1) + q(x, x-1) = 2^x + 2^{x+1} = 3 \cdot 2^x, & \text{se } x \geq 1.
-			\end{cases}
+			r(x,x-1)=\frac{2 \cdot2^x}{3 \cdot 2^x}=\frac{2}{3}
 			\]
-			La sommatoria da verificare è:
+			Siccome il sistema ha una forte tendenza a tornare verso stati inferiori e $r(x,x+1) <\frac{1}{2}$, allora possiamo dire che sará ricorrente.\\
+			Sappiamo quindi che la catena sará non esplosiva.\\
+			Per quanto riguarda la ricorrenza abbiamo che:
 			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
+			M=\sum_{j=0}^{\infty}\prod_{i=0}^{j-1}\frac{2^i}{2^{i+2}}=\sum_{j=0}^{\infty}(\frac{1}{4})^j=\frac{4}{3}
 			\]
-			
-			Per \(x = 0\):
+			Dato che M é finito, esiste una distribuzione stazionaria che implica che la catena sia non esplosiva positiva ricorrente.
+			\item Per prima cosa dobbiamo calcolare i rate della embedded DTMC:\\
 			\[
-			\frac{1}{\lambda(0)} = \frac{1}{2^0} = 1.
+			r(x,x+1)=\frac{2^x}{2 \cdot 2^x}=\frac{1}{2}
 			\]
-			
-			Per \(x \geq 1\):
 			\[
-			\frac{1}{\lambda(x)} = \frac{1}{3 \cdot 2^x}.
+			r(x,x-1)=\frac{2^x}{2 \cdot 2^x}=\frac{1}{2}
 			\]
-			
-			La sommatoria diventa:
+			L'embedded DTMC è una catena simmetrica con probabilità di andare verso l'alto e verso il basso uguali, é quindi noto si tratti di una catena null-ricorrente .\\
+			Sappiamo quindi che la catena sará non esplosiva.\\
+		
+			\item Per prima cosa dobbiamo calcolare i rate della embedded DTMC:\\
 			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}.
+			r(x,x+1)=\frac{2^{2x+1}}{3 \cdot 2^{2x}}=\frac{2}{3}
 			\]
-			
-			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}\):
 			\[
-			\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x} = \frac{1}{3} \sum_{x=1}^\infty \frac{1}{2^x}.
+			r(x,x-1)=\frac{2^{2x}}{3 \cdot 2^{2x}}=\frac{1}{3}
 			\]
-			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
+			Siccome il sistema ha una forte tendenza ad andare verso stati superiori e $r(x,x+1) >\frac{1}{2}$, allora possiamo dire che sará transiente.\\
+			Per quanto riguarda la distribuzione abbiamo che:
 			\[
-			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
+			M=\sum_{j=0}^{\infty}\prod_{i=0}^{j-1}\frac{2^{2i+1}}{2^{2i+2}}=\sum_{j=0}^{\infty}(\frac{1}{2})^j=2
 			\]
-			Abbiamo in conclusione che la serie diventa\\
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}=1+\frac{1}{3}=\frac{4}{3}
-			\]
-			Quindi la catena è esplosiva.
-			\item Ripetiamo gli stessi passaggi del punto precedente\\
-			\[
-			\lambda(x) =
-			\begin{cases} 
-				q(x, x+1) = 2^x, & \text{se } x = 0, \\ 
-				q(x, x+1) + q(x, x-1) = 2^x + 2^{x} = 2 \cdot 2^x, & \text{se } x \geq 1.
-			\end{cases}
-			\]
-			La sommatoria da verificare è:
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
-			\]
-			
-			Per \(x = 0\):
-			\[
-			\frac{1}{\lambda(0)} = \frac{1}{2^0} = 1.
-			\]
-			
-			Per \(x \geq 1\):
-			\[
-			\frac{1}{\lambda(x)} = \frac{1}{2 \cdot 2^x}.
-			\]
-			
-			La sommatoria diventa:
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}.
-			\]
-			
-			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}\):
-			\[
-			\sum_{x=1}^\infty \frac{1}{2 \cdot 2^x} = \frac{1}{2} \sum_{x=1}^\infty \frac{1}{2^x}.
-			\]
-			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
-			\[
-			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
-			\]
-			Abbiamo in conclusione che la serie diventa\\
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = 1 + \sum_{x=1}^\infty \frac{1}{2 \cdot 2^x}=1+\frac{1}{2}=\frac{3}{2}
-			\]
-			Quindi la catena è esplosiva.
-			\item Ripetiamo gli stessi passaggi del punto precedente\\
-			\[
-			\lambda(x) =
-			\begin{cases} 
-				q(x, x+1) = 2^{x+1}, & \text{se } x = 0, \\ 
-				q(x, x+1) + q(x, x-1) = 2^x + 2^{x+1} = 3 \cdot 2^x, & \text{se } x \geq 1.
-			\end{cases}
-			\]
-			La sommatoria da verificare è:
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)}.
-			\]
-			
-			Per \(x = 0\):
-			\[
-			\frac{1}{\lambda(0)} = \frac{1}{2^{0+1}} = \frac{1}{2}.
-			\]
-			
-			Per \(x \geq 1\):
-			\[
-			\frac{1}{\lambda(x)} = \frac{1}{3 \cdot 2^x}.
-			\]
-			
-			La sommatoria diventa:
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = \frac{1}{2} + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}.
-			\]
-			
-			Calcoliamo la serie \(\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}\):
-			\[
-			\sum_{x=1}^\infty \frac{1}{3 \cdot 2^x} = \frac{1}{3} \sum_{x=1}^\infty \frac{1}{2^x}.
-			\]
-			Notiamo che la serie è una geometrica e quindi ne conosciamo la convergenza\\
-			\[
-			\sum_{x=1}^\infty \frac{1}{2^x} = \frac{\frac{1}{2}}{1-\frac{1}{2}}=1
-			\]
-			Abbiamo in conclusione che la serie diventa\\
-			\[
-			\sum_{x=0}^\infty \frac{1}{\lambda(x)} = \frac{1}{2} + \sum_{x=1}^\infty \frac{1}{3 \cdot 2^x}=\frac{1}{2}+\frac{1}{3}=\frac{5}{6}
-			\]
-			Quindi la catena è esplosiva.
+			Dato che M é finito, possiamo appliccare il teorema secondo cui se la eDTMC é transiente ed esiste una distribuzione, allora la catena sará esplosiva.
 		\end{enumerate}
 		\newpage
 		\item \textbf{Esercizio 2: }
