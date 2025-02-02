@@ -43,7 +43,7 @@ m <- beta0 + beta1 * s1
 
 # Simulazione di W(s)
 library(MASS)
-W <- mvrnorm(1, mu = m, Sigma = Sigma)
+W <- m + mvrnorm(1, mu = numeric(n), Sigma = Sigma)
 
 # Simulazione di Y(s)
 Y <- W + rnorm(n, mean = 0, sd = sqrt(tau2))#ho separato il vettore W da il rumore eps distribuito come una N(0,tao2^0.5)
@@ -84,7 +84,7 @@ n_obs <- sample(10:90, 1)
 cat("Numero di osservazioni selezionate (n):", n_obs, "\n")
 
 # Generazione di un indice casuale per selezionare le osservazioni
-indices <- sample(1:n, n_obs)
+indices <- sample(1:n, n_obs, replace = FALSE)
 
 # Separazione di y_o e y_u
 y_o <- Y[indices]       # Valori osservati
@@ -139,14 +139,14 @@ for (t in 1:n_iter) {
   Sigma <- samples_sigma2[t] * exp(-samples_phi[t] * (as.matrix(dist(D_o))))
   Sigma_inv <- solve(Sigma)
   var_beta0 <- 1/(t(rep(1,n_obs)) %*% Sigma_inv %*% rep(1,n_obs) + 1/1000)
-  mean_beta0 <- -var_beta0 * (t(rep(1,n_obs)) %*% Sigma_inv %*% (W_o-beta1*D_o[,1]))
+  mean_beta0 <- var_beta0 * (t(rep(1,n_obs)) %*% Sigma_inv %*% (W_o-beta1*D_o[,1]))
   beta0 <- rnorm(1, mean_beta0, sqrt(var_beta0))
   
   samples_beta0[t+1] <- beta0
   
   # Step 2: Campionamento di beta1
   var_beta1 <- 1/(t(D_o[,1]) %*% Sigma_inv %*% D_o[,1] + 1/1000)
-  mean_beta1 <- -var_beta1 * (t(D_o[,1]) %*% Sigma_inv %*% W_o - samples_beta0[t+1] * t(rep(1,n_obs)) %*% Sigma_inv %*% D_o[,1])
+  mean_beta1 <- var_beta1 * (t(D_o[,1]) %*% Sigma_inv %*% W_o - samples_beta0[t+1] * t(rep(1,n_obs)) %*% Sigma_inv %*% D_o[,1])
   beta1 <- rnorm(1, mean_beta1, sqrt(var_beta1))
   
   samples_beta1[t+1] <- beta1
@@ -169,39 +169,47 @@ for (t in 1:n_iter) {
   samples_sigma2[t+1] <- sigma2
   
   # Step 5: Metropolis-Hastings per phi
-  phi_proposal <- -1  
-  while (phi_proposal < (3 / max_dist) | phi_proposal > (3 / min_dist)){
-    phi_proposal <- rnorm(1, samples_phi[t], sqrt(eta))
+  phi_proposal <- rnorm(1, samples_phi[t], sqrt(eta))
+  if (phi_proposal >= (3 / max_dist) & phi_proposal <= (3 / min_dist)){
+    
+    #Calcolo della matrice C corrente e quella proposta e le loro inverse
+    C <- samples_sigma2[t+1] * exp(-samples_phi[t] * (as.matrix(dist(D_o))))
+    C_inv <- solve(C)
+    C_proposal <- samples_sigma2[t+1] * exp(-phi_proposal * (as.matrix(dist(D_o))))
+    C_proposal_inv <- solve(C_proposal) 
+    
+    # Calcolo del log-determinante
+    log_det_current <- determinant(C, logarithm = TRUE)$modulus
+    log_det_proposal <- determinant(C_proposal, logarithm = TRUE)$modulus
+    log_det_term <- 0.5 * (log_det_current - log_det_proposal)
+    
+    # Calcolo del termine quadratico
+    quad_current <- t(residuals) %*% C_inv %*% residuals
+    quad_proposal <- t(residuals) %*% C_proposal_inv %*% residuals
+    quad_term <- 0.5 * (quad_current - quad_proposal)
+    
+    # Calcolo del log(alpha)
+    log_alpha <- log_det_term + quad_term
+    
+    # Calcolo di alpha
+    alpha <- min(1, exp(log_alpha))
+    if(t %% c != 0){
+      recent_alpha[t %% c] <- alpha
+    }
+    
+    
+    # Aggiorno phi in base alla probabilità di accettazione
+    u <- runif(1,0,1)
+    if(u<=alpha){
+      samples_phi[t+1] <- phi_proposal
+    } else {
+      samples_phi[t+1] <- samples_phi[t]
+    }
+    
   }
-  
-  #Calcolo della matrice C corrente e quella proposta e le loro inverse
-  C <- samples_sigma2[t+1] * exp(-samples_phi[t] * (as.matrix(dist(D_o))))
-  C_inv <- solve(C)
-  C_proposal <- samples_sigma2[t+1] * exp(-phi_proposal * (as.matrix(dist(D_o))))
-  C_proposal_inv <- solve(C_proposal) 
-  
-  # Calcolo del log-determinante
-  log_det_current <- determinant(C, logarithm = TRUE)$modulus
-  log_det_proposal <- determinant(C_proposal, logarithm = TRUE)$modulus
-  log_det_term <- 0.5 * (log_det_current - log_det_proposal)
-  
-  # Calcolo del termine quadratico
-  quad_current <- t(residuals) %*% C_inv %*% residuals
-  quad_proposal <- t(residuals) %*% C_proposal_inv %*% residuals
-  quad_term <- 0.5 * (quad_current - quad_proposal)
-  
-  # Calcolo del log(alpha)
-  log_alpha <- log_det_term + quad_term
-  
-  # Calcolo di alpha
-  alpha <- min(1, exp(log_alpha))
-
-  # Aggiorno phi in base alla probabilità di accettazione
-  u <- runif(1,0,1)
-  if(u<=alpha){
-    samples_phi[t+1] <- phi_proposal
-  } else {
+  else{
     samples_phi[t+1] <- samples_phi[t]
+    recent_alpha[t %% c] <- 0
   }
   
   # Aggiornamento adattivo della varianza
@@ -210,8 +218,6 @@ for (t in 1:n_iter) {
     mean_alpha <- mean(recent_alpha)  
     gamma_t <- A / (2 * A + t)
     eta <- exp(log(eta) + gamma_t * (mean_alpha - alpha_star))  # Aggiorna varianza
-  }else{
-    recent_alpha[t %% c] <- alpha  
   }
   
 }
